@@ -3,13 +3,23 @@ import menu from "../constants/menu.json"
 ---
 
 <div class="p-4 h-screen overflow-x-auto no-scrollbar">
-    <img src="https://corpus.quran.com/images/logo.png" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Inu_logo.jpg"
+    width="100px"
+    height="100px"
+    alt="logo"
+    class="mb-4"
+    />
     {menu.map((r, i) => (
         <div class="mb-3">
-            <h2 class="text-md font-bold">{r.title}</h2>
+            <h2 class="text-lg font-bold text-emerald-600">{r.title}</h2>
             <ul>
             {r.subMenu.map((d, di) => (
-                <li>{d.subTitle}</li>
+                <li class="text-sm mr-4">
+                    <a href="/" class="hover:text-emerald-700 capitalize">
+
+                    {d.subTitle}
+                    </a>
+                    </li>
         
             ))}
             </ul>

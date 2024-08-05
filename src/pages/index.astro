@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 import LeftNavbar from '../components/LeftNavbar.astro'
 import Home from '../components/home/Home.astro';
 ---
@@ -9,11 +8,14 @@ import Home from '../components/home/Home.astro';
 
 	
 	<main class="max-w-screen-2xl mx-auto">
-		<div class="flex flex-col lg:flex-row items-start justify-start gap-4">
+		<div class="flex flex-col lg:flex-row items-start justify-start gap-8">
 			<div class="w-full lg:max-w-72">
 				<LeftNavbar />
 			</div>
-			<div class=" w-full">
+			<div class="w-full">
+				<Home />
+			</div>
+			<div class=" w-full lg:max-w-60">
 				<Home />
 			</div>
 		</div>
