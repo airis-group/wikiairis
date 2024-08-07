@@ -1,0 +1,29 @@
+---
+import DatasetComp from "../../components/u/DatasetComp";
+import Layout from "../../layouts/Layout.astro"
+
+---
+
+
+<!-- <section class="cf">
+
+    <div class="wp">
+        <ul class="flex flex-wrap">
+            {nd && nd.map((r, i) => (
+                <li>{r.word}</li>
+
+            ))}
+        </ul>
+    </div>
+</section> -->
+
+<Layout title="Welcome to AiRis.id">
+
+	
+	<main class="max-w-screen-2xl mx-auto">
+		<div class="flex flex-col lg:flex-row items-start justify-start gap-8">
+			<DatasetComp client:only/>		
+		</div>
+
+	</main>
+</Layout>
