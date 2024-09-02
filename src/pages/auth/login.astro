@@ -1,0 +1,10 @@
+---
+import LayoutAuth from "../../layouts/LayoutAuth.astro"
+import LoginPage from "./Login"
+---
+<LayoutAuth title="Welcome to AiRis.id">
+
+	<main class="">
+		<LoginPage client:load />
+	</main>
+</LayoutAuth>
