@@ -7,6 +7,11 @@
                 "subTitle" : "introduction",
                 "path" : "/"
 
+            },
+            {
+                "subTitle" : "about us",
+                "path" : "/about-us"
+
             }
         ]
     },

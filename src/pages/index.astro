@@ -2,12 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import LeftNavbar from '../components/LeftNavbar.astro'
 import Home from '../components/home/Home.astro';
+import SideBar from '../components/home/SideBar.astro';
 ---
 
 <Layout title="Welcome to AiRis.id">
 
 	
-	<main class="max-w-screen-2xl mx-auto">
+	<main class="max-w-screen-2xl mx-auto px-4">
 		<div class="flex flex-col lg:flex-row items-start justify-start gap-8">
 			<div class="w-full lg:max-w-72">
 				<LeftNavbar />
@@ -15,8 +16,8 @@ import Home from '../components/home/Home.astro';
 			<div class="w-full">
 				<Home />
 			</div>
-			<div class=" w-full lg:max-w-60">
-				<!-- <Home /> -->
+			<div class=" w-full sm:max-w-60 sm:mt-12">
+				<SideBar />
 			</div>
 		</div>
 	</main>
