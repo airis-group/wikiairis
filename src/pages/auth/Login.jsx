@@ -11,11 +11,11 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErr('')
-        setAnimate(false)
+        setAnimate(true)
         await api.post(`/api/v1/auth/login`, input)
         .then((response) => {
-  
-          localStorage.setItem("access_token", response.data.access_token);
+        
+            localStorage.setItem("access_token", response.data.access_token);
           localStorage.setItem("data", JSON.stringify(response.data.data));
           window.location.href = "/u/dashboard";
           setTimeout(() => setAnimate(false), 700);
@@ -59,8 +59,12 @@ const Login = () => {
 
                                 type="password" required name="password" id="password" placeholder="Your Password" className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
                             </div>
-                            <div className="mb-6">
-                                <button type="submit" className="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Sign in</button>
+                            <div className="mb-6 flex flex-col items-center justify-center">
+                                {animate ? 
+                                    <span className='bg-red-500 w-full px-3 text-center rounded-full py-2 text-white '>Loading ... </span>
+                                : 
+                                    <button type="submit" className="w-full px-3 py-4 text-white bg-indigo-500 rounded-md focus:bg-indigo-600 focus:outline-none">Sign in</button>
+                                }
                             </div>
                         </form>
                     </div>

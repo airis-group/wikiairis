@@ -10,10 +10,22 @@
             <div class="flex gap-4">
                 <a href="/u/dashboard" class="text-sm font-bold">Dashboard</a>
                 <a href="/u/dataset" class="text-sm font-bold">Dataset</a>
-                <a href="/" class="text-sm font-bold">Logout</a>
+                <a id="logoutLink" href="/" class="text-sm font-bold">Logout</a>
             </div>
-
         </div>
     </div>
 
 </header>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+      const logoutLink = document.getElementById('logoutLink');
+      
+      logoutLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('data');
+        window.location.href = '/'; // Uncomment this line if you want to navigate to the home page
+      });
+    });
+  </script>

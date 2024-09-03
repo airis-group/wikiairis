@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react'
 import { apiCred } from '../libs/connection';
+import LoadingPage from '../components/LoadingPage';
 const PrivateRoute = ({children}) => {
     const currentPath = window.location.pathname;
     const [animate, setAnimate] = useState(true);
@@ -28,7 +29,7 @@ const PrivateRoute = ({children}) => {
       }, [currentPath]);
   return (
    <>
-   {animate ? <span>Loading The Page</span> : children}
+   {animate ? <LoadingPage /> : children}
    </>
   )
 }

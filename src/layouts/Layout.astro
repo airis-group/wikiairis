@@ -4,8 +4,11 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import SideBar from "../components/home/SideBar.astro";
+import LeftNavbar from "../components/LeftNavbar.astro";
 import TopNavbar from "../components/TopNavbar.astro";
 import "../styles/base.css"
+
 ---
 
 <!doctype html>
@@ -21,7 +24,20 @@ import "../styles/base.css"
 	</head>
 	<body>
 		<TopNavbar />
-		<slot />
+		
+		<main class="max-w-screen-2xl mx-auto px-4">
+			<div class="flex flex-col lg:flex-row items-start justify-start gap-8">
+				<div class="w-full lg:max-w-72">
+					<LeftNavbar />
+				</div>
+				<div class="w-full">
+					<slot />
+				</div>
+				<div class=" w-full sm:max-w-60 sm:mt-12">
+					<SideBar />
+				</div>
+			</div>
+		</main>
 	</body>
 </html>
 <!-- <style is:global>
