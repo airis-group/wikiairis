@@ -3,15 +3,15 @@ import menu from "../constants/menu.json"
 
 ---
 
-<div class="p-4 h-screen overflow-x-auto no-scrollbar hidden sm:block">
+
+<div class="flex flex-col pb-[70px]">
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Inu_logo.jpg"
     width="100px"
     height="100px"
     alt="logo"
-    class="mb-4"
     />
     {menu.map((r, i) => (
-        <div class="mb-3">
+        <div class="">
             <h2 class="text-lg font-bold text-emerald-600">{r.title}</h2>
             <ul>
             {r.subMenu.map((d, di) => (
@@ -28,29 +28,7 @@ import menu from "../constants/menu.json"
         </div>
 
     ))}
+
+
 </div>
 
-<div id="mobile-menu" class="backdrop-blur-sm bg-white/30 absolute top-0 h-screen w-full mt-[60px] ease-in-out duration-500  flex-col -translate-x-full">
-    <div class="w-full p-4 z-40">
-        <ul>
-            <li class="py-2 hover:bg-emerald-300 font-bold hover:text-white rounded-lg duration-500 px-4 cursor-pointer"><a href="/">Home</a></li>
-            <li class="py-2 hover:bg-emerald-300 font-bold hover:text-white rounded-lg duration-500 px-4 cursor-pointer"><a href="/auth/login">Login</a></li>
-        </ul>
-    </div>
-</div>
-<script>
-    const toggleButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    toggleButton.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.contains('translate-x-0');
-
-      if (isOpen) {
-        mobileMenu.classList.remove('translate-x-0');
-        mobileMenu.classList.add('-translate-x-full');
-      } else {
-        mobileMenu.classList.remove('-translate-x-full');
-        mobileMenu.classList.add('translate-x-0');
-      }
-    });
-  </script>

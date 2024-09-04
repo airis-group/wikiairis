@@ -1,87 +1,115 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 const peneliti = [
-    {
-        name : "Asep Fajar Firmansyah, M.T.I.",
-        desc : "Dosen di Program Studi Sistem Informasi",
-        img : "/assets/images/personal/asep.jpg"
-
-    },
-    {
-        name : "Dr. Eva Nugraha, M.Ag.",
-        desc : "Dosen di Program Studi Ilmu Al-Qur'an dan Tafsir",
-        img : "/assets/images/personal/eva.jpg"
-
-    },
-    {
-        name : "Dr. Kamal Fikry Musa, Lc., M.A",
-        desc : "Dosen di Program Studi Ilmu Al-Qur'an dan Tafsir",
-        img : "/assets/images/personal/kamal-avatar.jpg"
-
-    },
-    {
-        name : "Dr. Khodijah Hulliyah",
-        desc : "Dosen di Program Studi Teknik Informatika",
-        img : "/assets/images/personal/khadijah.jpg"
-
-    },
-    {
-        name : "Ria Hari Gusmita, M.Kom",
-        desc : "Dosen di Program Studi Teknik Informatika",
-        img : "/assets/images/personal/ria.jpg"
-
-    },
-]
+  {
+    name: "Asep Fajar Firmansyah, M.T.I.",
+    desc: "Lecturer in the Information Systems Study Program",
+    inst : "UIN Syarif Hidayatullah Jakarta, Indonesia",
+    img: "/assets/images/personal/asep.jpg",
+  },
+  {
+    name: "Dr. Eva Nugraha, M.Ag.",
+    desc: "Lecturer in the Al-Qur'an and Tafsir Study Program",
+    inst : "UIN Syarif Hidayatullah Jakarta, Indonesia",
+    img: "/assets/images/personal/eva.jpg",
+  },
+  {
+    name: "Dr. Kamal Fikry Musa, Lc., M.A",
+    desc: "Lecturer in the Al-Qur'an and Tafsir Study Program",
+    inst : "UIN Syarif Hidayatullah Jakarta, Indonesia",
+    img: "/assets/images/personal/kamal-avatar.jpg",
+  },
+  {
+    name: "Dr. Khodijah Hulliyah",
+    desc: "Lecturer in the Informatics Engineering Study Program",
+    inst : "UIN Syarif Hidayatullah Jakarta, Indonesia",
+    img: "/assets/images/personal/khadijah.jpg",
+  },
+  {
+    name: "Ria Hari Gusmita, M.Kom",
+    desc: "Lecturer in the Informatics Engineering Study Program",
+    inst : "UIN Syarif Hidayatullah Jakarta, Indonesia",
+    img: "/assets/images/personal/ria.jpg",
+  },
+];
 ---
 
 <Layout title="About Us AiRis.id">
-    <div class="flex flex-col gap-4 h-screen overflow-x-hidden no-scrollbar px-4 sm:px-0 mb-16 sm:pt-12">
-        <div class="flex flex-col items-center justify-center">
-            <h1 class="text-4xl font-bold text-slate-700 text-center">Meet Our Team Research</h1>
-            <p class="text-sm text-slate-500 text-center max-w-xl mt-4">Our research team is composed of highly qualified and dedicated lecturers from UIN Syarif Hidayatullah Jakarta, each bringing a unique blend of expertise in Islamic studies and artificial intelligence. </p>
-
-        </div>
-        <div class="w-full">
-            <div class="grid gap-10 mx-auto md:grid-cols-3 lg:max-w-screen-lg">
-                {peneliti.map((r) => (
-                    <div class="flex flex-col items-center justify-center odd:bg-slate-50 p-8 odd:rounded-lg odd:shadow-xl">
-                      <img class="object-cover w-24 h-24 rounded-full shadow" 
-                      src={r.img} alt="Person" />
-                      <div class="flex flex-col justify-center mt-2">
-                        <p class="text-xl text-slate-700 font-bold text-center">{r.name}</p>
-                        <p class="mb-4 text-xs text-gray-500 text-center ">{r.desc}</p>
-                      </div>
-                    </div>
-    
-                ))}
-    
-            </div>
-          </div>
-
-
-          <div class="mt-12 bg-slate-950 px-8 py-12 text-slate-100 rounded-lg text-sm">
-            <div class="flex flex-col items-center justify-center mb-12">
-                <h2 class="text-4xl font-bold text-slate-100 text-center">Community Engagement</h2>
-                <p class="text-sm text-slate-300 text-center max-w-xl mt-4">
-    
-                    We believe in the power of collaboration and community involvement. Our initiative encourages engagement from a wide range of stakeholders:
-                </p>
-
-            </div>
-            <div class="space-y-2">
-                <p>
-                    <span class="bg-emerald-400 text-xs text-white px-4 py-1 rounded-lg"> Academics and Researchers :</span>
-                    We welcome collaborations with scholars and researchers interested in exploring the application of AI to Islamic studies.
-    
-                </p>
-               
-                <p>  <span class="bg-orange-400 text-xs text-white px-4 py-1 rounded-lg"> Students: </span>We offer opportunities for students to participate in research projects, internships, and workshops, fostering the next generation of researchers and technologists.</p>
-                
-    <p><span class="bg-blue-400 text-xs text-white px-4 py-1 rounded-lg"> General Public: </span>We invite the general public to explore our research outputs, participate in our events, and contribute to discussions on the intersection of AI and Islamic knowledge.</p>
-              
-
-            </div>
-</div>
+  <div
+    class="flex flex-col gap-4 pb-[70px]"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <h1 class="text-3xl sm:text-6xl font-bold text-emerald-700 text-center">
+        Meet Our Team Research
+      </h1>
+      <p class="text-sm text-slate-400 text-center max-w-xl mt-4">
+        Our research team is composed of highly qualified and dedicated
+        lecturers from UIN Syarif Hidayatullah Jakarta, each bringing a unique
+        blend of expertise in Islamic studies and artificial intelligence.
+      </p>
     </div>
+    <div class="w-full">
+      <div class="grid gap-10 mx-auto md:grid-cols-3 lg:max-w-screen-lg">
+        {
+          peneliti.map((r) => (
+            <div class="flex flex-col items-center justify-center odd:bg-slate-50 p-8 odd:rounded-lg odd:shadow-xl">
+              <img
+                class="object-cover w-24 h-24 rounded-full shadow"
+                src={r.img}
+                alt="Person"
+              />
+              <div class="flex flex-col justify-center mt-2">
+                <p class="text-xl text-emerald-700 font-bold text-center">
+                  {r.name}
+                </p>
+                <p class=" text-xs text-gray-500 text-center ">{r.desc}</p>
+                <p class="mb-4 text-xs font-bold text-emerald-600 text-center ">{r.inst}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div
+      class="mt-12 bg-slate-950 px-8 py-12 text-slate-100 rounded-lg text-sm shadow-xl"
+    >
+      <div class="flex flex-col items-center justify-center mb-12">
+        <h2 class="text-4xl font-bold text-slate-100 text-center">
+          Community Engagement
+        </h2>
+        <p class="text-sm text-slate-300 text-center max-w-xl mt-4">
+          We believe in the power of collaboration and community involvement.
+          Our initiative encourages engagement from a wide range of
+          stakeholders:
+        </p>
+      </div>
+      <div class="space-y-2">
+        <p>
+          <span class="bg-emerald-400 text-xs text-white px-4 py-1 rounded-lg">
+            Academics and Researchers :</span
+          >
+          We welcome collaborations with scholars and researchers interested in exploring
+          the application of AI to Islamic studies.
+        </p>
+
+        <p>
+          <span class="bg-orange-400 text-xs text-white px-4 py-1 rounded-lg">
+            Students:
+          </span>We offer opportunities for students to participate in research
+          projects, internships, and workshops, fostering the next generation of
+          researchers and technologists.
+        </p>
+
+        <p>
+          <span class="bg-blue-400 text-xs text-white px-4 py-1 rounded-lg">
+            General Public:
+          </span>We invite the general public to explore our research outputs,
+          participate in our events, and contribute to discussions on the
+          intersection of AI and Islamic knowledge.
+        </p>
+      </div>
+    </div>
+  </div>
 </Layout>

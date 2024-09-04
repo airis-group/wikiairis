@@ -1,11 +1,12 @@
 ---
 let name = "hode"
+import Image from "astro/components/Image.astro"
 ---
-<div class="flex flex-col gap-4 h-screen overflow-x-hidden no-scrollbar px-4 sm:px-0 sm:pt-12">
+<div class="flex flex-col gap-4 pb-[70px]">
     <div class="flex flex-col lg:flex-row gap-4">
         <div class="w-full flex flex-col gap-4">
             <div class="flex flex-col gap-4">
-                <h1 class="text-4xl font-bold">Welcome to AIRIS !</h1>
+                <h1 class="text-4xl font-bold">Welcome to AIRIS!</h1>
                 <p class="text-md text-slate-500">
                     Welcome to the Community Artificial Intelligence Research on Islamic Knowledge, a pioneering initiative at the intersection of technology and traditional scholarship. Spearheaded by the esteemed lecturers of UIN Syarif Hidayatullah Jakarta, our community is at the forefront of integrating artificial intelligence (AI) with Islamic studies.
                     <br /><br/>
@@ -18,8 +19,13 @@ let name = "hode"
                     We are also committed to fostering a collaborative environment that encourages engagement and participation from a broad spectrum of stakeholders. By bringing together academics, researchers, students, and the wider community, we seek to create a dynamic and inclusive space for learning and discovery. Our events, workshops, and publications are all geared towards stimulating dialogue and advancing the field of AI in Islamic studies.
                     As we move forward, we invite you to join us on this exciting journey. Whether you are interested in contributing to our research, participating in our initiatives, or simply learning more about our work, we welcome your involvement. Together, we can explore new frontiers in AI and Islamic knowledge, paving the way for future innovations and deeper understandings.
                 </p>
-                <img src="/assets/images/nlp-airis.png" alt="nlp-airis"/>
-
+                <Image src="/assets/images/airis-enquiner.png" alt="nlp-airis"
+                width="1600"
+                height="900"
+                decoding="async"
+                loading="lazy"
+                />
+                
             </div>
             <div class="bg-blue-950 p-8 rounded-lg shadow-lg">
                 <h2 class="h1 font-bold text-white">Join Us?</h2>

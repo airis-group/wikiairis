@@ -22,22 +22,27 @@ import "../styles/base.css"
 		
 		<title>{title}</title>
 	</head>
-	<body>
-		<TopNavbar />
-		
-		<main class="max-w-screen-2xl mx-auto px-4">
-			<div class="flex flex-col lg:flex-row items-start justify-start gap-8">
-				<div class="w-full lg:max-w-72">
-					<LeftNavbar />
-				</div>
-				<div class="w-full">
-					<slot />
-				</div>
-				<div class=" w-full sm:max-w-60 sm:mt-12">
-					<SideBar />
-				</div>
-			</div>
-		</main>
+	<body class="relative max-h-screen w-full">
+  <TopNavbar />
+
+  <!-- Main container with margin-top to avoid overlap with header -->
+  <div class="flex flex-col min-h-screen max-w-screen-2xl px-4 mx-auto">
+    <div class="flex flex-1 gap-2 sm:gap-4">
+      
+      <!-- Sidebar -->
+      <aside class="hidden  sm:block sm:w-2/12 overflow-y-auto max-h-screen pt-[100px] no-scrollbar">
+        <!-- <div class="h-[1800px]">Sidebar Content</div> -->
+		 <LeftNavbar />
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="flex-1  overflow-y-auto max-h-screen pt-[100px] no-scrollbar">
+		<slot />
+	</main>
+
+    </div>
+  </div>
+
 	</body>
 </html>
 <!-- <style is:global>

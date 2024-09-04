@@ -1,10 +1,71 @@
 ---
+import Image from 'astro/components/Image.astro';
 import Layout from '../layouts/Layout.astro';
-import LeftNavbar from '../components/LeftNavbar.astro'
-import Home from '../components/home/Home.astro';
-import SideBar from '../components/home/SideBar.astro';
+
 ---
 
 <Layout title="Welcome to AiRis.id">
-	<Home />
+	<div class="flex flex-col gap-4 pb-[70px]">
+		<div class="flex flex-col lg:flex-row gap-4">
+			<div class="w-full flex flex-col gap-4">
+				<div class="flex flex-col gap-4">
+					<h1 class="text-3xl sm:text-6xl font-bold bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">Welcome to AIRIS!</h1>
+					<p class="text-md text-slate-500">
+						Welcome to the Community Artificial Intelligence Research on Islamic Knowledge, a pioneering initiative at the intersection of technology and traditional scholarship. Spearheaded by the esteemed lecturers of UIN Syarif Hidayatullah Jakarta, our community is at the forefront of integrating artificial intelligence (AI) with Islamic studies.
+						<br /><br/>
+						We are dedicated to exploring how advanced computational techniques can enhance, preserve, and expand our understanding of Islamic knowledge.
+						Our initiative represents a unique confluence of modern technology and classical scholarship. At a time when AI is transforming countless fields, we see immense potential in applying these technologies to the rich and diverse body of Islamic texts and traditions. Our goal is to leverage AI to provide new insights into Islamic teachings, facilitate scholarly research, and make these profound resources more accessible to scholars, students, and the global community.
+						Our team is composed of a diverse group of experts from UIN Syarif Hidayatullah Jakarta, including leading Islamic scholars, AI researchers, and ethicists. This interdisciplinary approach allows us to tackle complex questions and challenges from multiple perspectives, ensuring that our work is both technically robust and deeply rooted in Islamic tradition. We believe that this unique blend of expertise is key to addressing the nuanced requirements of integrating AI with Islamic knowledge.
+						<br /><br/>
+						
+						Through our research, we aim to develop innovative tools and methodologies that will set new standards in the field. From advanced natural language processing algorithms that enhance our ability to interpret classical texts, to ethical frameworks ensuring that AI developments align with Islamic values, our projects are designed to push the boundaries of what is possible while staying true to our core principles.
+						We are also committed to fostering a collaborative environment that encourages engagement and participation from a broad spectrum of stakeholders. By bringing together academics, researchers, students, and the wider community, we seek to create a dynamic and inclusive space for learning and discovery. Our events, workshops, and publications are all geared towards stimulating dialogue and advancing the field of AI in Islamic studies.
+						As we move forward, we invite you to join us on this exciting journey. Whether you are interested in contributing to our research, participating in our initiatives, or simply learning more about our work, we welcome your involvement. Together, we can explore new frontiers in AI and Islamic knowledge, paving the way for future innovations and deeper understandings.
+					</p>
+					<Image src="/assets/images/airis-enquiner.png" alt="nlp-airis"
+					width="1600"
+					height="900"
+					decoding="async"
+					loading="lazy"
+					/>
+					
+				</div>
+				<div class="bg-blue-950 p-8 rounded-lg shadow-lg">
+					<h2 class="h1 font-bold text-white">Join Us?</h2>
+					<p class="text-md text-slate-200 mt-4">Be a part of this groundbreaking initiative to integrate artificial intelligence with Islamic scholarship. Together, we can pave the way for new discoveries, promote ethical technological advancements, and enhance the global understanding of Islamic knowledge.</p>
+				</div>
+				<div>
+					<h2 class="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">Code with Us?</h2>
+					<h3 class="h3 font-bold">Manual text annotation</h3>
+					<p class="text-md text-slate-500">
+						
+						Text Annotation for Validating AI Dataset Training
+	
+						Text annotation is a crucial process in the development of AI systems, especially in training machine learning models. It involves adding meaningful labels or metadata to text data to help AI algorithms learn and make accurate predictions.
+						<br /> <br />
+						
+						Here’s how text annotation plays a role in validating AI dataset training:
+						<br />
+						
+						Definition of Text Annotation: Text annotation is the process of tagging or labeling text with relevant information that describes its content or context. This can include identifying entities (like names or locations), classifying sentiment (positive, negative, neutral), or annotating parts of speech (nouns, verbs, adjectives), among other things.
+						Purpose in AI Training: For an AI model to learn effectively, it needs to be trained on a dataset where each piece of text is annotated with correct labels. This training data helps the model understand patterns and relationships within the text. Without accurate annotations, the model might learn incorrect patterns or make faulty predictions.
+						Validation of Training Data: After the initial annotation of the dataset, it’s essential to validate the annotations to ensure their accuracy and consistency. Validation involves reviewing the annotated data to check for errors or inconsistencies. This step is crucial because the quality of the annotations directly affects the performance of the AI model.
+						Quality Assurance: Validating annotated text helps to identify and correct mistakes, ensuring that the data used to train the AI model is reliable. This process often involves cross-checking annotations by different annotators or using automated tools to identify discrepancies.
+						Benefits:
+						Improved Model Accuracy: Accurate annotations lead to better model training and more reliable predictions.
+						Error Detection: Validation helps in detecting and rectifying errors in the annotations, leading to cleaner data.
+						Consistency: Ensures that the annotations are consistent across the dataset, which is vital for the model to learn correctly.
+						Tools and Techniques: Various tools and techniques can assist in text annotation and validation, including annotation platforms that allow for easy labeling and review. Some advanced systems incorporate machine learning algorithms to automate parts of the validation process, flagging potential issues for human review.
+						In summary, text annotation is a foundational step in preparing data for AI training. Validating these annotations ensures that the training data is accurate and reliable, which is essential for developing effective AI models.
+					</p>
+				</div>
+				<div>
+					<img src="/assets/images/anotated01.jpeg" alt="anotated airis"/>
+				</div>
+			</div>
+	
+		</div>
+	 
+	
+	</div>
 </Layout>

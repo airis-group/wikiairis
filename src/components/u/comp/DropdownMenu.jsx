@@ -13,9 +13,9 @@ const DropdownMenu = ({ entitas, dtp, handleTagChange }) => {
 
     const filterTag = (tag) => {
         if(tag === dtp?.tag){
-            return<span className='bg-red-500 text-xs px-2 py-1 text-white rounded-md'>Terpilih</span>
+            return<span className='bg-emerald-500 text-xs px-2 py-1 text-white rounded-md'>Terpilih</span>
         }else{
-            return<span onClick={()=>handleTagChange(dtp?.idx, tag)}>Pilih</span>
+            return<span className='bg-red-500 text-xs px-2 py-1 text-white rounded-md' onClick={()=>handleTagChange(dtp?.idx, tag)}>Pilih</span>
         }
     }
     return (
@@ -39,7 +39,7 @@ const DropdownMenu = ({ entitas, dtp, handleTagChange }) => {
             {entitas.map((r, i) => (
                 <div key={r.name} className="mb-2">
                     <div 
-                        className="flex items-center justify-between p-2 cursor-pointer bg-gray-200 hover:bg-gray-300"
+                        className="flex items-center justify-between text-sm p-2 cursor-pointer bg-gray-200 rounded-md hover:bg-gray-300"
                         onClick={() => toggleDropdown('r', i)}
                     >
                         <span>{r.name}</span>
@@ -60,13 +60,13 @@ const DropdownMenu = ({ entitas, dtp, handleTagChange }) => {
                             {r.sub.map((itsub, j) => (
                                 <div key={itsub?.nameSub} className="flex flex-col mb-2">
                                     <div 
-                                        className="flex items-center justify-between p-2 cursor-pointer bg-red-100 hover:bg-red-200"
+                                        className="flex items-center justify-between text-sm p-2 cursor-pointer bg-red-100 rounded-md hover:bg-red-200"
                                         onClick={() => toggleDropdown('sub', j)}
                                     >
                                         <span>{itsub?.nameSub}</span>
                                         {itsub?.isLabel ? filterTag(itsub?.nameSub) : null}
 
-                                        {itsub?.sub2.length >1 ? 
+                                        {itsub?.sub2.length >= 1 ? 
                                             <span className="ml-2">
                                                 {openDropdown[`sub-${j}`] ? (
                                                     <ChevronDownIcon className="w-5 h-5" />
@@ -81,9 +81,9 @@ const DropdownMenu = ({ entitas, dtp, handleTagChange }) => {
                                     {openDropdown[`sub-${j}`] && itsub.sub2.length >= 1 && (
                                         <div className="ml-4 mt-2">
                                             {itsub.sub2.map((itsub2, k) => (
-                                                <div key={itsub2?.nameSub2} className="flex flex-col mb-2">
+                                                <div key={itsub2?.nameSub2} className="flex flex-col text-sm mb-2">
                                                     <div 
-                                                        className="flex items-center justify-between p-2 cursor-pointer bg-blue-100 hover:bg-blue-200"
+                                                        className="flex items-center justify-between p-2 cursor-pointer rounded-md bg-blue-100 hover:bg-blue-200"
                                                         onClick={() => toggleDropdown('sub2', k)}
                                                     >
                                                         <span>{itsub2?.nameSub2}</span>

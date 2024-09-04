@@ -153,15 +153,18 @@ const DatasetComp = () => {
         setDtp(n)
         setIsOpen(true)
     }
+    const closeModal = () => {
+        setIsOpen(false)
+        setDtp('')
+    }
     return (
         <div className="w-full py-8 relative">
             <div className="flex flex-row gap-4">
                 <div className="w-full md:w-10/12">
                     <div className="flex flex-col">
 
-                        {isLoading ? <span className="bg-red-400 text-xs text-white py-2 px-4 rounded-full mb-4 text-center">Please Wait Loading the data</span> : null}
-                        {/* <div className="flex items-center justify-end mb-3">
-                            </div> */}
+                        {isLoading ? <span className="bg-red-400 text-xs text-white py-2 px-4 rounded-full mb-4 text-center">Please Wait Loading the data</span> : <h1 className="text-4xl text-emerald-600 font-bold flex items-center justify-center mb-3">Dataset Entitas</h1>}
+                        
 
                             
                        
@@ -231,10 +234,16 @@ const DatasetComp = () => {
             <div 
                 className={`transition-transform duration-500 ease-in-out ${
                     isOpen ? 'translate-x-0 w-96 px-8' : '-translate-x-full'
-                } fixed top-0 left-0 h-full bg-gray-100 p-4 shadow-lg`}
+                } fixed top-0 left-0 h-full  backdrop-blur-md p-4 shadow-lg`}
             >
-                <h2 className="text-xl font-bold mb-4">Entitas Modul</h2>
-                <div className="max-h-[80vh] overflow-x-auto">
+                <div className="flex items-center justify-between">
+                <h2 className="text-xl text-emerald-600 font-bold mb-4">Entitas Modul</h2>
+                <span 
+                onClick={()=>closeModal()}
+                className="bg-red-500 px-4 py-1 text-xs text-white font-bold cursor-pointer rounded-xl">X</span>
+
+                </div>
+                <div className="max-h-[90vh] overflow-x-auto no-scrollbar">
                 <DropdownMenu entitas={entitas} dtp={dtp} handleTagChange={handleTagChange} />
 
                 </div>

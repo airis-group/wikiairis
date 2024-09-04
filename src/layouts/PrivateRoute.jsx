@@ -13,9 +13,8 @@ const PrivateRoute = ({children}) => {
         .then((response) => {
             //   localStorage.removeItem("data");
             //   localStorage.setItem("data", JSON.stringify(response.data.data));
-            setTimeout(() => {
-              setAnimate(false);
-            }, 1000);
+            setAnimate(false);
+       
         })
         .catch((error) => {
           localStorage.removeItem("data");
