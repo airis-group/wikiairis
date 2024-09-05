@@ -362,5 +362,4 @@ export const entitas = [
             },
         ]
     },
-    
-    ]
+]

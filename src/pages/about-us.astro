@@ -49,7 +49,7 @@ const peneliti = [
         blend of expertise in Islamic studies and artificial intelligence.
       </p>
     </div>
-    <div class="w-full">
+    <div class="w-full px-8">
       <div class="grid gap-10 mx-auto md:grid-cols-3 lg:max-w-screen-lg">
         {
           peneliti.map((r) => (
@@ -73,39 +73,41 @@ const peneliti = [
     </div>
 
     <div
-      class="mt-12 bg-slate-950 px-8 py-12 text-slate-100 rounded-lg text-sm shadow-xl"
+      class="mt-12 bg-slate-950 px-8 py-12 text-slate-100 rounded-lg text-sm shadow-xl flex flex-col items-center"
     >
       <div class="flex flex-col items-center justify-center mb-12">
-        <h2 class="text-4xl font-bold text-slate-100 text-center">
+        <h2 class="text-3xl sm:text-6xl font-bold text-slate-100 text-center">
           Community Engagement
         </h2>
-        <p class="text-sm text-slate-300 text-center max-w-xl mt-4">
+        <p class="text-xs text-slate-400 text-center max-w-xl mt-4">
           We believe in the power of collaboration and community involvement.
           Our initiative encourages engagement from a wide range of
           stakeholders:
         </p>
       </div>
-      <div class="space-y-2">
-        <p>
+      <div class="space-y-2 max-w-xl">
+        <p class="text-center">
           <span class="bg-emerald-400 text-xs text-white px-4 py-1 rounded-lg">
-            Academics and Researchers :</span
-          >
+            Academics and Researchers :</span> <br />
           We welcome collaborations with scholars and researchers interested in exploring
           the application of AI to Islamic studies.
         </p>
 
-        <p>
+        <p class="text-center">
           <span class="bg-orange-400 text-xs text-white px-4 py-1 rounded-lg">
             Students:
-          </span>We offer opportunities for students to participate in research
+          </span><br />
+          We offer opportunities for students to participate in research
           projects, internships, and workshops, fostering the next generation of
           researchers and technologists.
         </p>
 
-        <p>
+        <p class="text-center">
           <span class="bg-blue-400 text-xs text-white px-4 py-1 rounded-lg">
             General Public:
-          </span>We invite the general public to explore our research outputs,
+          </span>
+          <br />
+          We invite the general public to explore our research outputs,
           participate in our events, and contribute to discussions on the
           intersection of AI and Islamic knowledge.
         </p>

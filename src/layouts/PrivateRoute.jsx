@@ -11,16 +11,18 @@ const PrivateRoute = ({children}) => {
       await apiCred
         .get(`/api/v1/auth/me`)
         .then((response) => {
+          console.log("res", response)
             //   localStorage.removeItem("data");
             //   localStorage.setItem("data", JSON.stringify(response.data.data));
             setAnimate(false);
        
         })
         .catch((error) => {
+          console.log("err", error)
+          setAnimate(false);
           localStorage.removeItem("data");
           localStorage.removeItem("access_token");
           window.location.href = "/auth/login";
-          setAnimate(false);
         });
       };
       useEffect(() => {
