@@ -1,7 +1,8 @@
 ---
-import Image from 'astro/components/Image.astro';
 import Layout from '../layouts/Layout.astro';
-
+import anonatedImg from "../assets/images/anotated01.jpeg"
+import airisImg from "../assets/images/airis-enquiner.png"
+import { Image } from 'astro:assets';
 ---
 
 <Layout title="Welcome to AiRis.id">
@@ -22,11 +23,7 @@ import Layout from '../layouts/Layout.astro';
 						We are also committed to fostering a collaborative environment that encourages engagement and participation from a broad spectrum of stakeholders. By bringing together academics, researchers, students, and the wider community, we seek to create a dynamic and inclusive space for learning and discovery. Our events, workshops, and publications are all geared towards stimulating dialogue and advancing the field of AI in Islamic studies.
 						As we move forward, we invite you to join us on this exciting journey. Whether you are interested in contributing to our research, participating in our initiatives, or simply learning more about our work, we welcome your involvement. Together, we can explore new frontiers in AI and Islamic knowledge, paving the way for future innovations and deeper understandings.
 					</p>
-					<Image src="/assets/images/airis-enquiner.png" alt="nlp-airis"
-					width="1600"
-					height="900"
-					decoding="async"
-					loading="lazy"
+					<Image src={airisImg} alt="nlp-airis"
 					/>
 					
 				</div>
@@ -61,12 +58,7 @@ import Layout from '../layouts/Layout.astro';
 				</div>
 				<div>
 					<!-- <img src="/assets/images/anotated01.jpeg" alt="anotated airis"/> -->
-					<Image src="/assets/images/anotated01.jpeg" alt="anotated airis"
-					width="1600"
-					height="900"
-					decoding="async"
-					loading="lazy"
-					/>
+					<Image src={anonatedImg} alt="anotated airis"/>
 					
 				</div>
 			</div>
