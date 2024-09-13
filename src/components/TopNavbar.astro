@@ -39,13 +39,13 @@ const menuPublic = [
         <div class="flex flex-row items-center justify-between">
             <div class="flex flex-col">
                 <span class="text-xl md:text-2xl font-bold text-orange-600">AiRis.id</span>
-                <span class="text-[7px] text-emerald-600">AI Research On Islamic Knowledges</span>
+                <span class="text-[10px] text-emerald-600 -mt-1">AI Research On Islamic Knowledges</span>
             </div>
             <div class="gap-4 hidden md:flex">
                 {menuPublic.map((it) => (
-                    <a href={it.path} class="text-sm text-slate-700 hover:text-emerald-600 duration-300 font-bold">
+                    <a href={it.path} class="text-sm group text-slate-700 hover:text-emerald-600 duration-300 font-bold">
                          <span class="flex items-center justify-center gap-2">
-                             <Icon name={it.icon} size={20} /> {it.name}
+                             <Icon name={it.icon} class='group-hover:bg-orange-500 group-hover:text-white group-hover:px-1 group-hover:rounded-sm duration-300' size={20} /> {it.name}
                          </span>
                     </a>
 
