@@ -12,6 +12,21 @@ const menuPublic = [
         path : "/about-us"
     },
     {
+        name : "Community",
+        icon : "lucide:baby",
+        path : "/community"
+    },
+    {
+        name : "Event",
+        icon : "lucide:calendar-days",
+        path : "/event"
+    },
+    {
+        name : "Publication",
+        icon : "lucide:pen-tool",
+        path : "/publication"
+    },
+    {
         name : "Login",
         icon : "lucide:airplay",
         path : "/auth/login"
@@ -19,7 +34,7 @@ const menuPublic = [
 ]
 ---
 
-<header class="fixed top-0 left-0 right-0 h-[60px] bg-slate-50 shadow-lg z-30">
+<header class="fixed top-0 left-0 right-0 h-[60px] bg-slate-50 shadow-lg">
     <div class="w-full max-w-screen-2xl mx-auto px-4 py-2">
         <div class="flex flex-row items-center justify-between">
             <div class="flex flex-col">
@@ -28,7 +43,7 @@ const menuPublic = [
             </div>
             <div class="gap-4 hidden md:flex">
                 {menuPublic.map((it) => (
-                    <a href={it.path} class="text-sm text-slate-700 hover:text-emerald-600 duration-500 font-bold">
+                    <a href={it.path} class="text-sm text-slate-700 hover:text-emerald-600 duration-300 font-bold">
                          <span class="flex items-center justify-center gap-2">
                              <Icon name={it.icon} size={20} /> {it.name}
                          </span>
@@ -38,49 +53,61 @@ const menuPublic = [
                 
             </div>
             <div class="gap-4 block sm:hidden">
-               <button id="menu-button"><Icon name="mdi:format-list-bulleted" size="21" /></button>
+               <button id="menu-open"><Icon name="mdi:format-list-bulleted" size="25" /></button>
                
             </div>
 
         </div>
     </div>
-    <div id="mobile-menu" class="backdrop-blur-sm bg-white/50 absolute top-0 h-screen w-full z-50 mt-[60px] ease-in-out duration-500  flex-col -translate-x-full">
-        <div class="w-full z-40 mt-20 px-8">
-            <ul class="flex flex-col gap-2">
-                {menuPublic.map((it) => (
-                    <li class="py-2 text-orange-500 hover:bg-emerald-300 font-bold hover:text-white rounded-lg duration-500 px-4 cursor-pointer"><a href={it.path}>
-                        
-                        <span class="flex items-center justify-center gap-2">
-                             <Icon name={it.icon} size={20} /> {it.name}
-                         </span>
-                        
-                        </a></li>
-
-                ))}
-                <!-- <li class="py-2 text-orange-500 hover:bg-emerald-300 font-bold hover:text-white rounded-lg duration-500 px-4 cursor-pointer"><a href="/auth/login">Login</a></li> -->
-            </ul>
-        </div>
-    </div>
 </header>
-<!-- 
-<header class="fixed top-0 left-0 right-0 h-[7vh] bg-slate-300">
+<!-- <div id="mobile-menu" class="absolute backdrop-blur-sm  bg-black/80 top-0 h-screen w-full z-50 mt-[60px] ease-in-out duration-500  flex-col -translate-x-full"> -->
+<div id="mobile-menu" class="absolute -translate-x-full bg-black/80 h-screen w-full ease-in-out duration-300 backdrop-blur-sm top-0 left-0">
+    <div class="w-full mt-8 px-8 flex flex-col gap-3">
+        <div class="flex items-center justify-between">
+            <span class="text-xl md:text-2xl font-bold text-orange-600">AiRis.id</span>
+            <button id="menu-close">
+                <Icon name="line-md:menu-to-close-alt-transition" class='text-white' size="25"/>
+            </button>
+          
+        </div>
+        <ul class="flex flex-col gap-2 mt-8">
+            {menuPublic.map((it) => (
+                <li class="py-2 text-orange-500  font-bold hover:text-white rounded-lg duration-500 px-4 cursor-pointer">
+                    <a href={it.path}>
+                        <span class="flex items-center justify-center gap-2">
+                            <Icon name={it.icon} size={20} /> {it.name}
+                        </span>
+                    </a>
+                </li>
 
-</header> -->
-
-
+            ))}
+        </ul>
+    </div>
+</div>
 <script>
-    const toggleButton = document.getElementById('menu-button');
+    const openButton = document.getElementById('menu-open');
+    const closeButton = document.getElementById('menu-close');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    toggleButton.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.contains('translate-x-0');
+    // toggleButton.addEventListener('click', () => {
+    //   const isOpen = mobileMenu.classList.contains('translate-x-0');
 
-      if (isOpen) {
+    //   if (isOpen) {
+    //     mobileMenu.classList.remove('translate-x-0');
+    //     mobileMenu.classList.add('-translate-x-full');
+    //   } else {
+    //     mobileMenu.classList.remove('-translate-x-full');
+    //     mobileMenu.classList.add('translate-x-0');
+    //   }
+    // });
+    openButton.addEventListener('click', () => {
+        // alert('open')
+        mobileMenu.classList.add('translate-x-0');
+        mobileMenu.classList.remove('-translate-x-full');
+    });
+    closeButton.addEventListener('click', () => {
+        // alert('close')
         mobileMenu.classList.remove('translate-x-0');
         mobileMenu.classList.add('-translate-x-full');
-      } else {
-        mobileMenu.classList.remove('-translate-x-full');
-        mobileMenu.classList.add('translate-x-0');
-      }
     });
   </script>

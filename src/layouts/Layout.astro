@@ -1,76 +1,75 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
+import { Icon } from "astro-icon/components";
 import SideBar from "../components/home/SideBar.astro";
 import LeftNavbar from "../components/LeftNavbar.astro";
 import TopNavbar from "../components/TopNavbar.astro";
-import "../styles/base.css"
-
+import "../styles/base.css";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="AIRIS | AI Research Islamic Knowledges" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		
-		<title>{title}</title>
-	</head>
-	<body class="relative max-h-screen w-full">
-  <TopNavbar />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="AIRIS | AI Research Islamic Knowledges Community" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="relative max-h-screen w-full">
+    <TopNavbar />
 
-  <!-- Main container with margin-top to avoid overlap with header -->
-  <div class="flex flex-col min-h-screen max-w-screen-2xl px-4 mx-auto">
-    <div class="flex flex-1 gap-2 sm:gap-4">
-      
-      <!-- Sidebar -->
-      <aside class="hidden  sm:block sm:w-2/12 overflow-y-auto max-h-screen pt-[100px] no-scrollbar">
-        <!-- <div class="h-[1800px]">Sidebar Content</div> -->
-		 <LeftNavbar />
-      </aside>
+    <div class="flex flex-col min-h-screen max-w-screen-2xl px-4 mx-auto">
+      <div class="flex flex-1 gap-2 sm:gap-4">
+        <!-- Sidebar -->
+        <aside
+          class="hidden sm:block sm:w-2/12 overflow-y-auto max-h-screen pt-[100px] no-scrollbar"
+        >
+          <LeftNavbar />
+        </aside>
 
-      <!-- Main Content Area -->
-      <main class="flex-1  overflow-y-auto max-h-screen pt-[100px] no-scrollbar">
-		<slot />
-	</main>
-
+        <!-- Main Content Area -->
+        <main
+          class="flex-1 overflow-y-auto max-h-screen pt-[100px] no-scrollbar"
+        >
+          <div
+            id="side-menu"
+            class="absolute -translate-x-full ease-in-out duration-500 md:hidden backdrop-blur-md top-0 left-0 w-screen flex flex-col pt-10 px-4"
+          >
+            <div class="flex items-center justify-end">
+              <button id="side-close">
+                <Icon name="mdi:arrow-left-circle" class="text-red-600" size={30} />
+              </button>
+            </div>
+            <LeftNavbar />
+          </div>
+          <button id="side-open" class="block sm:hidden mb-2">
+			<Icon name="mdi:arrow-expand-all" class="text-orange-500" size={30}/>
+            <!-- <Icon name="mdi:arrow-right-circle" size={30} /> -->
+          </button>
+          <slot />
+        </main>
+      </div>
     </div>
-  </div>
-
-	</body>
+  </body>
 </html>
-<!-- <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style> -->
+
+<script>
+  const sideOpen = document.getElementById("side-open");
+  const sideClose = document.getElementById("side-close");
+  const sideMenu = document.getElementById("side-menu");
+
+  sideOpen.addEventListener("click", () => {
+    sideMenu.classList.add("translate-x-0");
+    sideMenu.classList.remove("-translate-x-full");
+  });
+  sideClose.addEventListener("click", () => {
+    sideMenu.classList.remove("translate-x-0");
+    sideMenu.classList.add("-translate-x-full");
+  });
+</script>
