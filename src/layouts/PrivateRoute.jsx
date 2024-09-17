@@ -9,7 +9,7 @@ const PrivateRoute = ({children}) => {
     const check_auth = async () => {
       setAnimate(true);
       await apiCred
-        .get(`/api/v1/auth/me`)
+        .get(`/auth/me`)
         .then((response) => {
           console.log("res", response)
             //   localStorage.removeItem("data");

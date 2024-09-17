@@ -18,7 +18,13 @@
     .no-scrollbar {
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
-  }
+    }
+    .form {
+		@apply flex flex-col px-8 gap-2
+	}
+	.form-input{
+		@apply bg-slate-50 px-4 py-2 rounded-lg shadow-md h-10
+	}
     
 
 }

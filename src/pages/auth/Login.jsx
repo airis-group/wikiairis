@@ -12,7 +12,7 @@ const Login = () => {
         e.preventDefault()
         setErr('')
         setAnimate(true)
-        await api.post(`/api/v1/auth/login`, input)
+        await api.post(`/auth/login`, input)
         .then((response) => {
         
             localStorage.setItem("access_token", response.data.access_token);
