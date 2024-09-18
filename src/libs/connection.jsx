@@ -1,7 +1,7 @@
 import axios from "axios";
 
-let PY_API = 'http://localhost:5001/api/v1'
-// let PY_API = 'https://crmapi.paraduta.id'
+// let PY_API = 'http://localhost:5001/api/v1'
+let PY_API = 'https://crmapi.paraduta.id'
 const baseUrl = PY_API
 
 export const api = axios.create({
