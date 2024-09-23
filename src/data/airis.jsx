@@ -1,3 +1,17 @@
+import { toast } from 'react-toastify'
+
+export const toastSuccess = () => toast.success('Insert / Update Success!', {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    // transition: Bounce,
+    });
+
 export const entitasData = [
     {
         "id": 1,
@@ -152,66 +166,79 @@ export const entitasData = [
 export const entitas = [
 
     {
-        name : "Allah",
+        label : "Allah",
+        lang : {ind : 'Allah', en: "Allah"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Arasy Allah",
+        label : "Throne",
+        lang: {en: "Allah's Throne", ind: "'Arasy Allah"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Astronomi",
+        label : "AstronomicalBody",
+        lang: {en: "Astronomical body", ind: "Astronomi"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Kitab Suci",
+        label : "HolyBook",
+        lang: {en: "Holy book", ind: "Kitab suci"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Bahasa",
+        label : "Language",
+        lang: {en: "Language", ind: "Bahasa"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Agama",
+        label : "Religion",
+        lang: {en: "Religion", ind: "Agama"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Makanan",
+        label : "Food",
+        lang: {en: "Food", ind: "Makanan"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Buah-buahan",
+        label : "Fruit",
+        lang: {en: "Fruit", ind: "Buah-buahan"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Lauf Mahfuzh",
+        label : "TheBookOfAllah",
+        lang: {en: "The book Of Allah", ind: "Lauf mahfuzh"},
         isLabel : 1,
         sub : []
     },
     {
-        name : "Artefak",
+        label : "Artefak",
+        lang: {en: "Artifact", ind: "Artefak"},
         isLabel : 0,
         sub : [
             {
-                nameSub : "Tempat Ibadah",
+                label : "Tempat Ibadah",
+                lang: {en: "Worship place", ind: "Tempat Ibadah"},
                 isLabel : 0,
                 sub2 : [
                     {
-                        nameSub2 : "Masjid",
+                        label : "Mosque",
+                        lang: {en: "Mosque", ind: "Mesjid"},
                         isLabel : 1
                     }
                 ]
             },
             {
-                nameSub : "Persenjataan",
+                label : "Weaponary",
+                lang: {en: "Weaponary", ind: "Persenjataan"},
                 isLabel : 1,
                 sub2 : []
     
@@ -219,17 +246,20 @@ export const entitas = [
         ]
     },
     {
-        name : "Lokasi",
+        label : "Lokasi",
+        lang: {en: "Location", ind: "Lokasi"},
         isLabel : 0,
         sub : [
             {
-                nameSub : "Lokasi di Akhirat",
+                label : "AfterlifeLocation",
+                lang: {en: "Afterlife location", ind: "Lokasi di akhirat"},
                 isLabel : 1,
                 sub2 : []
     
             },
             {
-                nameSub : "Lokasi di Dunia",
+                label : "GeographicalLocation",
+                lang: {en: "Geographical location", ind: "Lokasi di dunia"},
                 isLabel : 1,
                 sub2 : []
     
@@ -237,123 +267,160 @@ export const entitas = [
         ]
     },
     {
-        name : "Atribut Fisik",
+        label : "Physical Attributes",
+        lang: {en: "Physical Attributes", ind: "Atribut Fisik"},
         isLabel : 0,
         sub : [
             {
-                nameSub : "Warna",
+                label : "Color",
+                lang: {en: "Color", ind: "Warna"},
                 isLabel : 1,
                 sub2 : []
             },
         ]
     },
     {
-        name : "Dewa Palsu",
+        label : "Dewa",
+        lang: {en: "God", ind: "Dewa"},
         isLabel : 0,
         sub : [
             {
-                nameSub : "Sesembahan",
+                label : "Idol",
+                lang: {en: "Idol", ind: "Sesembahan"},
+                isLabel : 1,
+                sub2 : []
+            },
+            {
+                label : "FalseDeity",
+                lang: {en: "False deity", ind: "Dewa palsu"},
+                isLabel : 1,
+                sub2 : []
+            }
+        ]
+    },
+    {
+        label : "Peristiwa",
+        lang: {en: "Incident", ind: "Peristiwa"},
+        isLabel : 0,
+        sub : [
+            {
+                label : "AfterLifeEvent",
+                lang: {en: "Afterlife event", ind: "Peristiwa setelah kiamat"},
+                isLabel : 1,
+                sub2 : []
+            },
+            {
+                label : "CalendarEvent",
+                lang: {en: "Calendar event", ind: "Peristiwa rutin"},
+                isLabel : 1,
+                sub2 : []
+            },
+            {
+                label : "HistoricEvent",
+                lang: {en: "Historic event", ind: "Peristiwa bersejarah"},
+                isLabel : 1,
+                sub2 : []
+            },
+            {
+                label : "PhysicalEvent",
+                lang: {en: "Physical event", ind: "Peristiwa konkrit"},
+                isLabel : 1,
+                sub2 : []
+            },
+            {
+                label : "RoutineEvents",
+                lang: {en: "Routine Events", ind: "Peristiwa Rutin"},
                 isLabel : 1,
                 sub2 : []
             },
         ]
     },
     {
-        name : "Peristiwa",
+        label : "LivingThings",
+        lang: {en: "Living Things", ind: "Makhluk Hidup"},
         isLabel : 0,
         sub : [
             {
-                nameSub : "Peristiwa Setelah Kiamat",
-                isLabel : 1,
-                sub2 : []
-            },
-            {
-                nameSub : "Peristiwa Rutin",
-                isLabel : 1,
-                sub2 : []
-            },
-            {
-                nameSub : "Peristiwa Bersejarah",
-                isLabel : 1,
-                sub2 : []
-            },
-            {
-                nameSub : "Peristiwa Konkrit",
-                isLabel : 1,
-                sub2 : []
-            },
-            {
-                nameSub : "Peristiwa Rutin",
-                isLabel : 1,
-                sub2 : []
-            },
-        ]
-    },
-    {
-        name : "Makhluk Hidup",
-        isLabel : 0,
-        sub : [
-            {
-                nameSub : "Obyek Organik",
+                label : "OrganicObjects",
+                lang: {en: "Organic Objects", ind: "Obyek Organik"},
                 isLabel : 0,
                 sub2 : [
                     {
-                        nameSub2 : "Organisme biologis",
+                        label : "BiologicalOrganisms",
+                        lang: {en: "Biological organisms", ind: "Organisme biologis"},
                         isLabel : 0,
                         sub3 : [
                             {
-                                nameSub3 : "Tanaman",
+                                label : "Plant",
+                                lang: {en: "Plant", ind: "Tanaman"},
                                 isLabel : 1,
                             },
                             {
-                                nameSub3 : "Burung",
+                                label : "Bird",
+                                lang: {en: "Bird", ind: "Burung"},
                                 isLabel : 1,
                             },
                         ]
                     },
                     {
-                        nameSub2 : "Penyakit",
+                        label : "Disease",
+                        lang: {en: "Disease", ind: "Penyakit"},
                         isLabel : 1,
                         sub3 : []
                     }
                 ]
             },
             {
-                nameSub : "Ciptaan Sentient",
+                label : "Ciptaan Sentient",
+                lang: {en: "Sentient Creations", ind: "Ciptaan Sentient"},
                 isLabel : 0,
                 sub2 : [
                     {
-                        nameSub2 : "Malaikat",
+                        label : "Angel",
+                        lang: {en: "Angel", ind: "Malaikat"},
                         isLabel : 1,
                         sub3 : []
                     },
                     {
-                        nameSub2 : "Anak Cucu Adam",
+                        label : "ChildrenOfAdam",
+                        lang: {en: "Children of Adam", ind: "Anak cucu Adam"},
                         isLabel : 1,
                         sub3 : []
                     },
                     {
-                    nameSub2 : "Manusia",
+                    label : "Manusia",
+                    lang: {en: "Human", ind: "Manusia"},
+
                     isLabel : 0,
                         sub3 : [
                             {
-                                nameSub3 : "Kaum Bersejarah",
+                                label : "HistoricPeople",
+                                lang: {en: "Historic people", ind: "Kaum bersejarah"},
                                 isLabel : 1
                             },
                             {
-                                nameSub3 : "Manusia Bersejarah",
+                                label : "HistoricPerson",
+                                lang: {en: "Historic person", ind: "Manusia bersejarah"},
                                 isLabel : 1
                             },
                             {
-                                nameSub3 : "Raja/Ratu",
+                                label : "King",
+                                lang: {en: "King", ind: "Raja"},
                                 isLabel : 1
                             },
                             {
-                                nameSub3 : "Rasul",
+                                label : "Queen",
+                                lang: {en: "Queen", ind: "Ratu"},
                                 isLabel : 1
                             },
                             {
-                                nameSub3 : "Nabi",
+                                label : "Messenger",
+                                lang: {en: "Messenger", ind: "Rasul"},
+                                isLabel : 1
+                            },
+                            {
+                                label : "Prophet",
+                                lang: {en: "Prophet", ind: "Nabi"},
                                 isLabel : 1
                             },
                         ]
@@ -363,3 +430,4 @@ export const entitas = [
         ]
     },
 ]
+

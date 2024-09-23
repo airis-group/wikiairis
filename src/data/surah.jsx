@@ -1,4 +1,4 @@
-export const surah = {
+export const surahArray = {
     "96": {
         "1": {
             "chapterid": 96,

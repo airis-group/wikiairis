@@ -1,0 +1,109 @@
+[
+    {
+        "label" : "Allah",
+        "name" : "Allah",
+        lang: {en: "Allah", "ind" : "Allah"},
+        "sub" : []
+    }
+]
+
+
+
+{
+    "O": {
+        "lang": {en: "O", ind: "O"}
+    },
+    // "Allah": {
+    //     "lang": {"en": "Allah", ind: "Allah"}
+    // },
+    // "Throne": {
+    //     "lang": {"en": "Allah's Throne", ind: "'Arasy Allah"}
+    // },
+    "Mosque": {
+        lang: {en: "Mosque", ind: "Mesjid"}
+    },
+    "Weaponary": {
+        lang: {en: "Weaponary", ind: "Persenjataan"}
+    },
+    // "AstronomicalBody": {
+    //     lang: {en: "Astronomical body", ind: "Astronomi"}
+    // },
+    "AfterLifeEvent": {
+        lang: {en: "Afterlife event", ind: "Peristiwa setelah kiamat"}
+    },
+    "CalendarEvent": {
+        lang: {en: "Calendar event", ind: "Peristiwa rutin"}
+    },
+    "HistoricEvent": {
+        lang: {en: "Historic event", ind: "Peristiwa bersejarah"}
+    },
+    "PhysicalEvent": {
+        lang: {en: "Physical event", ind: "Peristiwa konkrit"}
+    },
+    "FalseDeity": {
+        lang: {en: "False deity", ind: "Dewa palsu"}
+    },
+    "Idol": {
+        lang: {en: "Idol", ind: "sesembahan"}
+    },
+    // "HolyBook": {
+    //     lang: {en: "Holy book", ind: "Kitab suci"}
+    // },
+    // "Language": {
+    //     lang: {en: "Language", ind: "Bahasa"}
+    // },
+    "Plant": {
+        lang: {en: "Plant", ind: "Tanaman"}
+    },
+    "Bird": {
+        lang: {en: "Bird", ind: "Burung"}
+    },
+    "Disease": {
+        lang: {en: "Disease", ind: "Penyakit"}
+    },
+    "Food": {
+        lang: {en: "Food", ind: "Makanan"}
+    },
+    "Angel": {
+        lang: {en: "Angel", ind: "Malaikat"}
+    },
+    "ChildrenOfAdam": {
+        lang: {en: "Children of Adam", ind: "Anak cucu Adam"}
+    },
+    "HistoricPeople": {
+        lang: {en: "Historic people", ind: "Kaum bersejarah"}
+    },
+    "HistoricPerson": {
+        lang: {en: "Historic person", ind: "Manusia bersejarah"}
+    },
+    "Queen": {
+        lang: {en: "Queen", ind: "Ratu"}
+    },
+    "King": {
+        lang: {en: "King", ind: "Raja"}
+    },
+    "Messenger": {
+        lang: {en: "Messenger", ind: "Rasul"}
+    },
+    "Prophet": {
+        lang: {en: "Prophet", ind: "Nabi"}
+    },
+    "AfterlifeLocation": {
+        lang: {en: "Afterlife location", ind: "Lokasi di akhirat"}
+    },
+    "GeographicalLocation": {
+        lang: {en: "Geographical location", ind: "Lokasi di dunia"}
+    },
+    "Color": {
+        lang: {en: "Color", ind: "Warna"}
+    },
+    "Religion": {
+        lang: {en: "Religion", ind: "Agama"}
+    },
+    "Fruit": {
+        lang: {en: "Fruit", ind: "Buah-buahan"}
+    },
+    "TheBookOfAllah": {
+        lang: {en: "The book Of Allah", ind: "Lauf mahfuzh"}
+    }
+}

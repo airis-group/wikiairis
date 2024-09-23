@@ -1,0 +1,15 @@
+---
+import LayoutPriv from "../../layouts/LayoutPriv.astro";
+import ValCom from "../../components/u/Validator"
+---
+
+<LayoutPriv title="Welcome to AiRis.id">
+
+	
+	<main class="max-w-screen-2xl mx-auto">
+		<div class="flex flex-col lg:flex-row items-start justify-start gap-8">
+			<ValCom client:load/>		             
+		</div>
+
+	</main>
+</LayoutPriv>

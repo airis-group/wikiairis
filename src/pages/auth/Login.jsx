@@ -16,6 +16,7 @@ const Login = () => {
         .then((response) => {
         
             localStorage.setItem("access_token", response.data.access_token);
+            localStorage.setItem("lang", "ind");
           localStorage.setItem("data", JSON.stringify(response.data.data));
           window.location.href = "/u/dashboard";
           setTimeout(() => setAnimate(false), 700);

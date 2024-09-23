@@ -5,13 +5,12 @@ const PrivateRoute = ({children}) => {
     const currentPath = window.location.pathname;
     const [animate, setAnimate] = useState(true);
   
-  
     const check_auth = async () => {
       setAnimate(true);
       await apiCred
         .get(`/auth/me`)
         .then((response) => {
-          console.log("res", response)
+            console.log("res", response)
             //   localStorage.removeItem("data");
             //   localStorage.setItem("data", JSON.stringify(response.data.data));
             setAnimate(false);
