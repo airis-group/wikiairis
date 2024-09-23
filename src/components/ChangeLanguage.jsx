@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
 const ChangeLanguage = () => {
-    const handleChange = (e) => {
-        localStorage.setItem("lang", e.target.value);
-    }
 
 
-    const lang = localStorage.getItem("lang");
+  const handleChange = (e) => {
+      const newLang = e.target.value
+      localStorage.setItem('lang', newLang);
+      setLang(newLang);
+  };
 
+  const lang = localStorage.getItem('lang')
+  console.log("ladaf", lang)
   return (
     <select className='text-xs'
     onChange={(e)=>handleChange(e)}
