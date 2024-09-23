@@ -6,11 +6,9 @@ const ChangeLanguage = () => {
   const handleChange = (e) => {
       const newLang = e.target.value
       localStorage.setItem('lang', newLang);
-      setLang(newLang);
   };
 
   const lang = localStorage.getItem('lang')
-  console.log("ladaf", lang)
   return (
     <select className='text-xs'
     onChange={(e)=>handleChange(e)}
