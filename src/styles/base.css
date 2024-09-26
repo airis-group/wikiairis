@@ -25,6 +25,8 @@
 	.form-input{
 		@apply bg-slate-50 px-4 py-2 rounded-lg shadow-md h-10
 	}
-    
+    .arabic-font {
+        font-family: 'Amiri', serif;
+	}
 
 }

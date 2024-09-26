@@ -5,15 +5,45 @@ import { entitas, toastSuccess } from '../../../data/airis'
 import { apiCred } from '../../../libs/connection'
 import Swal from 'sweetalert2'
 import EntitasSpan from '../comp/EntitasSpan'
-import {ReactMouseSelect} from 'react-mouse-select';
 
 const SurahDetail = ({ dtp, kembali }) => {
-    let id = 96
+    // let id = 96
+    const [surah, setSurah] = useState([])
+    const [ayah, setAyah] = useState([])
+
+    console.log("auah", ayah)
+    const handleFetchData = async () => {
+        try {
+          const response = await fetch(`/quran/${dtp}.json`);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const jsonData = await response.json();
+          setSurah(jsonData[dtp]);
+          const textArray = Object.entries(jsonData[dtp].text).map(([key, value]) => ({
+            id: key,
+            text: value
+        }));         
+         setAyah(textArray)
+        } catch (error) {
+          console.error('Error fetching the JSON file:', error);
+          setSurah([]); // Reset data on error
+        }    
+      };
+
+    const filterQuranArabic = (vid) => {
+        const n = ayah && ayah.find((it => it.id == vid))
+        return n?.text
+    }
+
+    
+
     const [datas, setDatas] = useState([])
     const [rld, setRld] = useState(false)
     useEffect(() => {
-        const nf = Object.values(surahArray[id]);
+        const nf = Object.values(surahArray[dtp]);
         setDatas(nf)
+        handleFetchData()
     }, [dtp])
 
 
@@ -21,7 +51,7 @@ const SurahDetail = ({ dtp, kembali }) => {
 
 
     const getSurahLabel = async () => {
-        await apiCred.get(`/airis/surah/label?surid=${id}`)
+        await apiCred.get(`/airis/surah/label?surid=${dtp}`)
         .then((res) => {
             setSurahLabel(res.data.data)
 
@@ -218,7 +248,12 @@ const SurahDetail = ({ dtp, kembali }) => {
 
     return (
         <div className='w-full flex flex-col mt-8'>
-        <h2 className='text-4xl font-bold text-emerald-600 mb-2'>Detail Surah</h2>
+        <div className='bg-purple-400 rounded-lg flex items-center flex-col justify-center py-8 mb-4 mt-4 shadow-lg'>
+            <h2 className='text-2xl font-bold text-white mb-2'>Detail Surah Number {dtp} </h2>
+            <h2 className='arabic-font text-4xl font-bold text-white mb-2'>{surah?.name}</h2>
+            <h2 className='text-2xl font-bold text-white mb-2'>{surah?.name_latin}</h2>
+
+        </div>
         <button onClick={kembali}
             className='bg-red-500 px-4 py-1 rounded-md w-fit text-xs text-white'
             >Kembali</button>
@@ -234,6 +269,12 @@ const SurahDetail = ({ dtp, kembali }) => {
                             </div>
                             <div>
                                 <span className='font-bold text-slate-600 text-xs'>1. Text Quran</span>
+                                <div className='w-full flex items-center justify-end'>
+                                    <p className='arabic-font text-2xl'>
+                                        {filterQuranArabic(r.verseid)}
+
+                                    </p>
+                                </div>
 
                             </div>
                             {/* <div className='flex flex-col text-red-600'>
@@ -298,31 +339,54 @@ const SurahDetail = ({ dtp, kembali }) => {
                 </div>
                 <div className="md:col-span-2">
                     <div className='flex flex-col gap-2'>
-                        <div className='bg-red-500 p-3 rounded-lg text-sm'>
-                            <span className='font-bold text-white'>Informasi Umum</span>
-                            <ul className='text-xs text-white'>
-                                <li>1. Perubahan Label Entitas : <br /> 
-                                Struktur Entitas adalah <br /> <br />
-                                <span className='bg-purple-600 px-4 py-1 mt-2 mb-2'>Entitas/Label</span>
-                                <br/>
-                                O = Tidak / Belum ada Label. <br /> <br />
-                                Validator bisa mengusulkan perubahan / penambahan label pada entitas yang dimaksud. Setelah proses input New Entitas Label berhasil maka data tersebut akan tersimpan pada kolom 4. Usulan Label Entitas 
-                                </li>
-                                <li>1. sdfasd</li>
-                                <li>1. sdfasd</li>
-                                <li>1. sdfasd</li>
-                                <li>1. sdfasd</li>
-                                <li>1. sdfasd</li>
-                                <li>1. sdfasd</li>
-                            </ul>
-                        </div>
-                        <div className='bg-slate-950 p-3 rounded-lg text-sm flex flex-col'>
+                    <div className='bg-slate-950 p-3 rounded-lg text-sm flex flex-col'>
                             <span className='font-bold text-white'>Pernyataan</span>
                             <span className='text-white text-xs'>Jika Bapak/Ibu Validator secara yakin telah melakukan dan atau memberikan masukan untuk Surah ini, mohon kiranya mengklik tombol pada bagain bahwa ini</span>
                             <button 
                             className='bg-red-600 text-white px-4 py-2 text-xs rounded-lg mt-4'
                             >Saya sudah selesai pada surah ini</button>
                         </div>
+                        <div className='bg-red-600 p-3 rounded-lg text-sm max-h-[350px] overflow-x-auto no-scrollbar'>
+                            <span className='font-bold text-white'>Informasi Umum</span>
+                            <ul className='text-xs text-white space-y-3'>
+                                <li>
+                                    <span className='font-bold'>
+                                    1. Modul Perubahan Label Entitas : 
+
+                                    </span>
+                                    
+                                    <br /> 
+                                Struktur Entitas & Label adalah <br /> <br />
+                                <span className='bg-purple-600 px-4 py-1 mt-2 mb-2'>Entitas/Label</span>
+                                <br/>
+                                <br />
+
+                                Validator bisa mengusulkan perubahan / penambahan label pada entitas yang dimaksud. Setelah proses input New Entitas Label berhasil maka data tersebut akan tersimpan pada kolom 4. Usulan Label Entitas 
+                                </li>
+                                <li>
+                                <span className='font-bold'>
+                                    2. Modul Usulan Label Entitas baru : 
+                                    </span>
+                                    <br />
+                                    Modul Usulan Label Entitas Baru adalah fitur yang dirancang untuk memungkinkan pengguna mengusulkan dan mendefinisikan label baru untuk entitas yang ada dalam sistem
+                                </li>
+                                <li>
+                                <span className='font-bold'>
+                                    3. Modul Usulan Entitas Span: 
+                                    </span>
+                                    <br />
+                                    Modul Usulan Entitas Span adalah fitur yang dirancang untuk memungkinkan pengguna mengusulkan entitas baru yang berkaitan dengan data yang sedang dikelola. Modul ini berfungsi untuk memperluas basis data dan memastikan bahwa entitas yang ada relevan dan up-to-date dengan perkembangan terbaru di lapangan.
+                                    <br />
+                                    Modul ini memungkinkan Validator untuk menggabungkan 2(dua) kata atau lebih menjadi 1(Satu) Entitas. Seperti Contoh : 
+                                    <br />
+                                    <br />
+                                    <span className='bg-purple-600 px-4 py-1 mt-2 mb-2'>Entitas Entitas/Label</span>
+
+
+                                </li>
+                            </ul>
+                        </div>
+                  
                     </div>
                 </div>
 

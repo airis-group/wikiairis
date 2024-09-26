@@ -12,6 +12,8 @@
   "dependencies": {
     "@astrojs/react": "^3.6.1",
     "@astrojs/tailwind": "^5.1.0",
+    "@fontsource-variable/noto-kufi-arabic": "^5.1.0",
+    "@fontsource/amiri": "^5.1.0",
     "@heroicons/react": "^2.1.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

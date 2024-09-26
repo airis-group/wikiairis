@@ -4,6 +4,7 @@ import { apiCred } from '../../libs/connection'
 
 const Validator = () => {
     const [dtp, setDtp] = useState('')
+    const [datas, setDatas] = useState([])
     const kembali = () => {
         setDtp('')
     }
@@ -14,6 +15,7 @@ const Validator = () => {
     const getDatas = async () => {
         await apiCred(`/airis/validator`)
         .then((res) => {
+            setDatas(res.data.data)
             console.log("res", res)
         })
         .catch((err) => {
@@ -26,7 +28,7 @@ const Validator = () => {
   return (
     <>
         {dtp ? <SurahDetail dtp={dtp} kembali={kembali} /> : 
-    <div className='w-full flex flex-col gap-2'>
+    <div className='w-full flex flex-col gap-4 mt-8'>
         <h2 className='text-4xl font-bold text-emerald-600'>List Assessment</h2>
         
             <div className='w-full flex flex-col gap-2'>
@@ -35,7 +37,7 @@ const Validator = () => {
                     <div className='flex items-center justify-center gap-4'>
                         <button>Status :  Open</button>
                         <button
-                        onClick={()=>pilih(1)}
+                        onClick={()=>pilih(96)}
                         >Detail</button>
 
                     </div>
