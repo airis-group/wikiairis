@@ -5,13 +5,12 @@ import { entitas, toastSuccess } from '../../../data/airis'
 import { apiCred } from '../../../libs/connection'
 import Swal from 'sweetalert2'
 import EntitasSpan from '../comp/EntitasSpan'
+import { HiChevronDoubleLeft } from "react-icons/hi";
 
 const SurahDetail = ({ dtp, kembali }) => {
     // let id = 96
     const [surah, setSurah] = useState([])
     const [ayah, setAyah] = useState([])
-
-    console.log("auah", ayah)
     const handleFetchData = async () => {
         try {
           const response = await fetch(`/quran/${dtp}.json`);
@@ -247,7 +246,7 @@ const SurahDetail = ({ dtp, kembali }) => {
     /// # MOUSE SELECT ENTITAS SPAN
 
     return (
-        <div className='w-full flex flex-col mt-8'>
+        <div className='w-full flex flex-col mt-8 mb-8'>
         <div className='bg-purple-400 rounded-lg flex items-center flex-col justify-center py-8 mb-4 mt-4 shadow-lg'>
             <h2 className='text-2xl font-bold text-white mb-2'>Detail Surah Number {dtp} </h2>
             <h2 className='arabic-font text-4xl font-bold text-white mb-2'>{surah?.name}</h2>
@@ -255,12 +254,15 @@ const SurahDetail = ({ dtp, kembali }) => {
 
         </div>
         <button onClick={kembali}
-            className='bg-red-500 px-4 py-1 rounded-md w-fit text-xs text-white'
-            >Kembali</button>
+            className='bg-red-500 px-4 py-1 rounded-md w-fit text-xs text-white flex items-center justify-between gap-3'
+            >
+                <HiChevronDoubleLeft />
+
+                Back to Assessment List</button>
             <div className='grid grid-cols-1 md:grid-cols-12 gap-4'>
                 <div className="md:col-span-10">
                     
-                <div className='flex flex-col gap-3 max-h-[80vh] overflow-x-auto no-scrollbar mt-4'>
+                <div className='flex flex-col gap-3 max-h-[70vh] overflow-x-auto no-scrollbar mt-4'>
                     {datas && datas.map((r, i) => (
                         <div key={i} className='flex flex-col odd:bg-slate-100 odd:rounded-lg p-4 gap-2'>
                             <div>
