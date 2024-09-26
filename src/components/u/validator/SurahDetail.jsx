@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { surahArray } from '../../../data/surah'
 import DropdownMenu from '../comp/DropdownMenu'
 import { entitas, toastSuccess } from '../../../data/airis'
 import { apiCred } from '../../../libs/connection'
 import Swal from 'sweetalert2'
+import EntitasSpan from '../comp/EntitasSpan'
+import {ReactMouseSelect} from 'react-mouse-select';
 
 const SurahDetail = ({ dtp, kembali }) => {
     let id = 96
@@ -21,7 +23,6 @@ const SurahDetail = ({ dtp, kembali }) => {
     const getSurahLabel = async () => {
         await apiCred.get(`/airis/surah/label?surid=${id}`)
         .then((res) => {
-            // console.log("res surah label", res)
             setSurahLabel(res.data.data)
 
         })
@@ -46,6 +47,7 @@ const SurahDetail = ({ dtp, kembali }) => {
         })
         setWtp(word)
         setNlab('')
+        setOpenes(false)
     }
 
     const [isOpen, setIsOpen] = useState(false);
@@ -56,37 +58,68 @@ const SurahDetail = ({ dtp, kembali }) => {
 
     
     const [wtp, setWtp] = useState('')
-    const [nlab, setNlab] = useState('')
+    const [nlab, setNlab] = useState([])
+
+    const handleChangeLabel = (tag, status) => {
+        const n = wtp.split('/')[0];
+        const newLabel = `${n}/${tag}`
+        // setNlab(newLabel)
+        setNlab({
+            entitas : n,
+            label : tag,
+            newLabel : newLabel,
+            status : status,
+        })      
+        // handleSubmit()  
+    }
+
     const handleSubmit = async (e) => {
 
         let newData = {
             surah_id : logSurah?.surah_id,
             ayah_id : logSurah?.ayah_id,
-            label : nlab
+            entitas : nlab?.entitas,
+            label : nlab?.label,
+            status : nlab?.status,
+            newLabel : nlab?.newLabel,
+            // el => entity label
+            code : 'el',
         }
         await apiCred.post(`/airis/label/store`, newData)
         .then((res) => {
             // console.log("res", res)
             setRld(!rld)
             toastSuccess()
+            setIsOpen(false)
         })
         .catch((err) => {
             console.log("err", err)
         })
     }
-    const handleChangeLabel = (tag) => {
-        const n = wtp.split('/')[0];
-        const newLabel = `${n}/${tag}`
-        setNlab(newLabel)
-    }
     
     const usulanLabel = (ayaid) => {
-        let n = surahLabel && surahLabel.filter((it) => it.ayah_id == ayaid)
+        let n = surahLabel && surahLabel.filter((it) => it.ayah_id == ayaid & it.code == 'el')
         if(n){
             return(
                 <div className='flex flex-row text-xs gap-2'>
                 {n.map((r, i) => (
-                    <span key={i} className='text-white bg-emerald-500 px-2 py-1 rounded-full'>{r.label}</span>
+                    <span key={i}
+                    onClick={()=>hapusLabel(r.id)}
+                    className={`text-white ${r.status === 1? `bg-emerald-500` : `bg-red-500`} px-3 py-1 rounded-full`}>{r.newLabel}</span>
+                ))}
+                </div>
+            )
+        }
+    }
+    const usulanSpan = (ayaid) => {
+        let n = surahLabel && surahLabel.filter((it) => it.ayah_id == ayaid & it.code == 'es')
+        if(n){
+            return(
+                <div className='flex flex-row text-xs gap-2'>
+                {n.map((r, i) => (
+                    <span key={i}
+                    onClick={()=>hapusLabel(r.id)}
+                    className={`text-white ${r.status === 1? `bg-emerald-500` : `bg-red-500`} px-3 py-1 rounded-full`}>{r.newLabel}</span>
                 ))}
                 </div>
             )
@@ -105,9 +138,8 @@ const SurahDetail = ({ dtp, kembali }) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                apiCred.delete(`/airis/label/destroy?id=${id}`)
+                apiCred.get(`/airis/label/destroy?id=${id}`)
                 .then((res) => {
-                    console.log("res", res)
                     setRld(!rld)
                 })
                 .catch((err) => {
@@ -121,7 +153,69 @@ const SurahDetail = ({ dtp, kembali }) => {
             }
           });
     }
+
+    /// MOUSE SELECT ENTITAS SPAN
+    const [selectedText, setSelectedText] = useState('');
+    const [openes, setOpenes] = useState(false)
     
+    const closeEntitySpan = () => {
+        setOpenes(false)
+        setSelectedText('')
+    }
+    const handleSelection = (surid, ayaid) => {
+        const selection = window.getSelection().toString();
+        setLogSurah({
+            surah_id : surid, 
+            ayah_id : ayaid
+        })
+
+        const words = selection.split(/\s+/); 
+
+       const cleanedWords = words.map(word => {
+         const index = word.indexOf('/');
+         return index !== -1 ? word.slice(0, index) : word;
+       });
+   
+       const result = cleanedWords.filter(word => word).join(' ').trim(); 
+       setSelectedText(result);
+       setIsOpen(false)
+       setOpenes(true)
+    };
+    const [entitySpan, setEntitySpan] = useState('')
+    const handleChangeSpanLabel = (tag, status) => {
+
+        const newLabel = `${selectedText}/${tag}`
+        setEntitySpan({
+            entitas : selectedText,
+            label : tag,
+            newLabel : newLabel,
+            status : status,
+        })      
+    }
+    const handleSubmitSpan = async (e) => {
+        let newData = {
+            surah_id : logSurah?.surah_id,
+            ayah_id : logSurah?.ayah_id,
+            entitas : entitySpan?.entitas,
+            label : entitySpan?.label,
+            // status harus divalidasi oleh admin
+            status : 0,
+            newLabel : entitySpan?.newLabel,
+            // es => entity span label
+            code : 'es',
+        }
+        await apiCred.post(`/airis/label/store`, newData)
+        .then((res) => {
+            setRld(!rld)
+            toastSuccess()
+            setIsOpen(false)
+        })
+        .catch((err) => {
+            console.log("err", err)
+        })
+    }
+    /// # MOUSE SELECT ENTITAS SPAN
+
     return (
         <div className='w-full flex flex-col mt-8'>
         <h2 className='text-4xl font-bold text-emerald-600 mb-2'>Detail Surah</h2>
@@ -142,12 +236,14 @@ const SurahDetail = ({ dtp, kembali }) => {
                                 <span className='font-bold text-slate-600 text-xs'>1. Text Quran</span>
 
                             </div>
-                            <div className='flex flex-col text-red-600'>
+                            {/* <div className='flex flex-col text-red-600'>
                                 <span className='font-bold text-slate-600 text-xs'>2. Terjemahan</span>
 
-                                {r.verse}</div>
+                                {r.verse}
+                            </div> */}
                             <div>
-                                <span className='font-bold text-slate-600 text-xs'>3. Entitas</span>
+                                <span className='font-bold text-slate-600 text-xs'>2. Verse Translation
+                                </span>
                                 <ul className='flex items-center gap-2 bg-emerald-50 p-2 text-sm'>
                                     {r.results.split(/[\s.]+/).map((result, index) => {
                                         const trimmedResult = result.trim();
@@ -156,6 +252,7 @@ const SurahDetail = ({ dtp, kembali }) => {
                                             const isAfterO = afterW === 'O' || afterW === 'O)' ? true : false; 
                                             const parts = trimmedResult.split('/');
                                             const sebelumWord = parts.length > 1 ? parts[0] : null;
+                                            const sesudahWord = parts.length > 1 ? parts[1] : null;
                                             // const wordPilih = {
                                             //     word : 
                                             // }
@@ -163,7 +260,15 @@ const SurahDetail = ({ dtp, kembali }) => {
                                                 <li key={index} className={` ${isAfterO ? '' : 'bg-red-400 text-white rounded-md px-2 py-1 font-bold text-xs'}`}>
                                                     {/* <span onClick={()=>pilihWord(sebelumWord)}> */}
                                                     <span onClick={()=>pilihWord(trimmedResult, r.chapterid, r.verseid )}>
-                                                    {trimmedResult}
+                                                    {/* {trimmedResult} */}
+                                                    <div onMouseUpCapture={()=>handleSelection(r.chapterid, r.verseid)} 
+                                                        //   style={{  border: '1px solid #ccc', userSelect: 'text' }}
+
+                                                    >
+                                                    {sebelumWord}{sesudahWord != "O" ? `/${sesudahWord}` : null}
+                                                    
+                                                    </div>
+                                                  
 
                                                     </span>
                                                 </li>
@@ -175,13 +280,14 @@ const SurahDetail = ({ dtp, kembali }) => {
 
                             </div>
                             <div className='flex flex-col'>
-                                <span className='font-bold text-slate-600 text-xs'>4. Usulan Label Entitas</span>
+                                <span className='font-bold text-slate-600 text-xs'>3. Proposed Entity Label</span>
                                     {usulanLabel(r.verseid)}
-
                             </div>
                             <div>
 
-                            <span className='font-bold text-slate-600 text-xs'>5. Usulan Entitas Span</span>
+
+                            <span className='font-bold text-slate-600 text-xs'>4. Proposed Entity Span & Label</span>
+                                    {usulanSpan(r.verseid)}
                             </div>
                         </div>
 
@@ -228,14 +334,31 @@ const SurahDetail = ({ dtp, kembali }) => {
             } fixed top-0 right-0 h-full backdrop-blur-lg p-4 shadow-lg`}
             >
                 <div className="flex items-center justify-between">
-                <h2 className="text-xl text-emerald-600 font-bold mb-4">Entitas Modul</h2>
+                <h2 className="text-xl text-emerald-600 font-bold mb-4">Entitas Label Modul</h2>
                 <span 
                 onClick={()=>closeModal()}
                 className="bg-red-500 px-4 py-1 text-xs text-white font-bold cursor-pointer rounded-xl">X</span>
 
                 </div>
-                <div className="max-h-[90vh] overflow-x-auto no-scrollbar">
+                <div className="max-h-[90vh]">
                 <DropdownMenu entitas={entitas} wtp={wtp} nlab={nlab} handleSubmit={handleSubmit} handleChangeLabel={handleChangeLabel} />
+
+                </div>
+            </div>
+            <div 
+            className={`transition-transform duration-500 ease-in-out ${
+                openes ? 'translate-x-0 w-96 px-8' : 'translate-x-full'
+            } fixed top-0 right-0 h-full backdrop-blur-lg p-4 shadow-lg`}
+            >
+                <div className="flex items-center justify-between">
+                <h2 className="text-xl text-emerald-600 font-bold mb-4">Entitas Span Modul</h2>
+                <span 
+                onClick={()=>closeEntitySpan()}
+                className="bg-red-500 px-4 py-1 text-xs text-white font-bold cursor-pointer rounded-xl">X</span>
+
+                </div>
+                <div className="max-h-[90vh]">
+                    <EntitasSpan entitas={entitas} selectedText={selectedText} entitySpan={entitySpan} handleChangeSpanLabel={handleChangeSpanLabel} handleSubmitSpan={handleSubmitSpan} />
 
                 </div>
             </div>

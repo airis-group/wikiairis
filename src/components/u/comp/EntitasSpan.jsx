@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/20/solid'; // Import Heroicons
-import EntitasLabel from './EntitasLabel';
 
-const DropdownMenu = ({ entitas, nlab, wtp, handleSubmit, handleChangeLabel }) => {
+const EntitasSpan = ({ entitas, selectedText, entitySpan, handleChangeSpanLabel,  handleSubmitSpan }) => {
     const [openDropdown, setOpenDropdown] = useState({});
 
     const toggleDropdown = (level, index) => {
@@ -15,30 +14,30 @@ const DropdownMenu = ({ entitas, nlab, wtp, handleSubmit, handleChangeLabel }) =
     const bhs = localStorage.getItem('lang')
 
     const filterTag = (tag) => {
-            return<span className='bg-red-500 text-xs px-2 py-1 text-white rounded-md' onClick={()=>handleChangeLabel(tag, 1)}>
+            return<span className='bg-red-500 text-xs px-2 py-1 text-white rounded-md' onClick={()=>handleChangeSpanLabel(tag, 1)}>
                 {/* {tag} */}
                 choose</span>
+ 
     }
     return (
         <div className="flex flex-col p-4 shadow-xl">
 
             <div className='flex flex-col bg-emerald-600 text-sm p-4 rounded-md mb-4 text-white'>
                 {/* {dpt?.} */}
-                <span className='font-bold'>Old Label:</span>
-                <span> {wtp} </span>
-                <span className='font-bold mt-2'>New Label: <br /> {nlab?.newLabel || ''}</span>
-                {nlab ? 
+                <span className='font-bold'>New Entity Span:</span>
+                <span> {selectedText} </span>
+                <span className='font-bold mt-2'>New Label: <br /> {entitySpan?.newLabel || ''}</span>
+                {entitySpan ? 
                 
                 <button className='bg-red-500 hover:bg-red-600 px-4 py-1 text-xs rounded-full mt-4'
                 
-                onClick={(e)=>handleSubmit(e)}
+                onClick={(e)=>handleSubmitSpan(e)}
                 >Save Changes ?</button>
                 : null}
             </div>
-            <div className='h-[75vh] overflow-x-auto no-scrollbar flex flex-col'>
-                <EntitasLabel handleChangeLabel={handleChangeLabel} />
+            <div className='h-[75vh] overflow-x-auto no-scrollbar'>
                 {entitas.map((r, i) => (
-                    <div key={i} className="mb-2 mt-4">
+                    <div key={i} className="mb-2">
                         <div 
                             className="flex items-center justify-between text-sm p-2 cursor-pointer bg-gray-200 rounded-md hover:bg-gray-300"
                             onClick={() => toggleDropdown('r', i)}
@@ -136,4 +135,4 @@ const DropdownMenu = ({ entitas, nlab, wtp, handleSubmit, handleChangeLabel }) =
     );
 };
 
-export default DropdownMenu;
+export default EntitasSpan;

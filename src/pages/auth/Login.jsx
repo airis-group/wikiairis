@@ -15,6 +15,7 @@ const Login = () => {
         await api.post(`/auth/login`, input)
         .then((response) => {
         
+            // console.log("eres", response)
             localStorage.setItem("access_token", response.data.access_token);
             localStorage.setItem("lang", "ind");
           localStorage.setItem("data", JSON.stringify(response.data.data));
@@ -25,6 +26,7 @@ const Login = () => {
         .catch((error) => {
           setAnimate(false);
           setInput("");
+          console.log("err", error)
           setErr(error.response.data.detail);
         });
     }
