@@ -11,6 +11,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // Supports weights 100-900
 import '@fontsource/amiri';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 ---
 
 <!doctype html>
@@ -27,7 +29,11 @@ import '@fontsource/amiri';
 	<body>
 		<TopNavPriv />
 		<PrivateRoute client:only="react">
-			<slot />
+			<GoogleOAuthProvider client:only="react" clientId="336834040279-b4m8ei3a7ef1sk7uklka9e27jpaor9j8.apps.googleusercontent.com">
+				<slot />
+
+			</GoogleOAuthProvider>
+
 	
 
 		</PrivateRoute>

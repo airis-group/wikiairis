@@ -6,8 +6,9 @@ import { apiCred } from '../../../libs/connection'
 import Swal from 'sweetalert2'
 import EntitasSpan from '../comp/EntitasSpan'
 import { HiChevronDoubleLeft } from "react-icons/hi";
+import PernyataanValidator from './PernyataanValidator'
 
-const SurahDetail = ({ dtp, kembali }) => {
+const SurahDetail = ({ assign, dtp, kembali }) => {
     // let id = 96
     const [surah, setSurah] = useState([])
     const [ayah, setAyah] = useState([])
@@ -344,9 +345,8 @@ const SurahDetail = ({ dtp, kembali }) => {
                     <div className='bg-slate-950 p-3 rounded-lg text-sm flex flex-col'>
                             <span className='font-bold text-white'>Pernyataan</span>
                             <span className='text-white text-xs'>Jika Bapak/Ibu Validator secara yakin telah melakukan dan atau memberikan masukan untuk Surah ini, mohon kiranya mengklik tombol pada bagain bahwa ini</span>
-                            <button 
-                            className='bg-red-600 text-white px-4 py-2 text-xs rounded-lg mt-4'
-                            >Saya sudah selesai pada surah ini</button>
+                            
+                            <PernyataanValidator assign={assign} />
                         </div>
                         <div className='bg-red-600 p-3 rounded-lg text-sm max-h-[350px] overflow-x-auto no-scrollbar'>
                             <span className='font-bold text-white'>Informasi Umum</span>

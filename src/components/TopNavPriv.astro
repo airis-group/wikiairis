@@ -1,5 +1,6 @@
 ---
 import ChangeLanguage from "./ChangeLanguage"
+import TopNavMenu from "./TopNavMenu"
 
 const menu = [
     {
@@ -19,27 +20,30 @@ const menu = [
     },
 ]
 
+
+
 let level = 'validator'
 
 let menuUsr = menu && menu.filter(it => it.level === level)
 ---
 
-<header class="w-full bg-slate-50 shadow-md">
+<header class="relative w-full bg-slate-50 shadow-md">
     <div class="w-full max-w-screen-2xl mx-auto px-4 py-2">
         <div class="flex flex-row items-center justify-between">
             <div class="flex flex-col">
                 <span class="text-2xl font-bold text-orange-600">AiRis.id</span>
                 <span class="text-xs text-emerald-600">AI Research On Islamic Knowledges</span>
             </div>
-            <div class="flex gap-4 capitalize">
-                <a href="/u/dashboard" class="text-sm font-bold">Dashboard</a>
-                {menuUsr && menuUsr.map((it) => (
-                    <a href={it.path} class="text-sm font-bold">{it.title}</a>
+            <div class="relative flex gap-4 capitalize text-sm font-bold">
+                <a href="/u/dashboard" class="">Dashboard</a>
+                <!-- {menuUsr && menuUsr.map((it) => (
+                    <a href={it.path} class="">{it.title}</a>
 
-                ))}
-                <a href="/u/account" class="text-sm font-bold capitalize">account</a>
+                ))} -->
+                <TopNavMenu client:only="react" />
+                <a href="/u/account" class=" capitalize">account</a>
                 <ChangeLanguage client:only="react" />
-                <a id="logoutLink" href="/" class="text-sm font-bold">Logout</a>
+                <a id="logoutLink" href="/" class="">Logout</a>
             </div>
         </div>
     </div>

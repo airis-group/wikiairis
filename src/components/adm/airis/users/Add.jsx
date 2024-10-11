@@ -2,11 +2,15 @@ import {useEffect, useState} from 'react'
 import { apiCred } from '../../../../libs/connection'
 
 const Add = ({dtp}) => {
+    const [rld, setRld] = useState(false)
+    const [animate, setAnimate] = useState(false)
+    const reload = () => setRld(!rld)
     const [input, setInput] = useState({
         id : "",
         name : "",
         email : "",
-        role : ""
+        role : "",
+        group : "",
     })
     const [err, setErr] = useState('')
     useEffect(() => {
@@ -14,7 +18,8 @@ const Add = ({dtp}) => {
             id : dtp.id || '',
             name : dtp.name || '',
             email : dtp.email || '',
-            role : dtp.role || ''
+            role : dtp.role || '',
+            group : dtp.group || '',
         })
     },[dtp])
     const handleChange = (e) => {
@@ -41,7 +46,8 @@ const Add = ({dtp}) => {
             if(res.data.status === 404){
                 setErr(res.data.detail)
             }
-            alert('success')
+            // alert('success')
+            reload()
         })
         .catch((err) => {
             console.log("err", err)
@@ -60,7 +66,7 @@ const Add = ({dtp}) => {
         }
 
   
-        <div className='grid grid-cols-3 gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
 
             <div className='flex flex-col gap-2 text-sm'>
                 <span>Name</span>
@@ -85,7 +91,7 @@ const Add = ({dtp}) => {
                 />
             </div>
             <div className='flex flex-col gap-2 text-sm'>
-                <span>Role / Group</span>
+                <span>Role</span>
                 <select 
                 name="role"
                 onChange={(e)=>handleChange(e)}
@@ -98,6 +104,22 @@ const Add = ({dtp}) => {
                         <option key={i} value={r.role}>{r.role}</option>
 
                     ))}
+                </select>
+            </div>
+            <div className='flex flex-col gap-2 text-sm'>
+                <span>Group</span>
+                <select 
+                name="group"
+                onChange={(e)=>handleChange(e)}
+                className='form-input' 
+                defaultValue={input?.group}
+                value={input.group || ''}
+                
+                >
+                    <option>Pilih</option>
+                    <option value="TEAMA">TEAM A / Lajnah</option>
+                    <option value="TEAMB">TEAM B / Internal</option>
+            
                 </select>
             </div>
             

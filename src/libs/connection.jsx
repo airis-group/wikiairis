@@ -12,6 +12,9 @@ export const apiCred = axios.create({
   baseURL: baseUrl,
 });
 
+
+
+
 apiCred.defaults.withCredentials = false;
 apiCred.interceptors.request.use(
   (config) => {

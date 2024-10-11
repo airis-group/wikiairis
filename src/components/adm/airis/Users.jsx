@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react'
 import { apiCred } from '../../../libs/connection'
 import ModalComp from './ModalComp'
 import Add from './users/Add'
+import { ButtonAdd, ButtonEdit, ButtonHapus } from '../../ButtonAction'
 
 const Users = () => {
   const [datas, setDatas] = useState([])
   const getDatas = async () => {
     await apiCred.get('/adm/users')
       .then((res) => {
-        // console.log(res.data)
+        console.log(res.data)
         setDatas(res.data)
       })
       .catch((err) => {
@@ -35,11 +36,13 @@ const Users = () => {
   return (
     <div className='flex flex-col gap-4'>
 
-      <div className='flex flex-row items-center justify-between'>
-        <span>Users Airis</span>
-        <button
-        onClick={()=>addNew()}
-        >Add New</button>
+      <div className='flex flex-row items-center gap-2'>
+        <h1 className='text-2xl font-bold'>Users Airis</h1>
+
+
+        <ButtonAdd 
+              onClick={()=>addNew()}
+        />
       </div>
 
 
@@ -59,6 +62,9 @@ const Users = () => {
               </th>
               <th scope="col" className="px-6 py-3">
                 Role
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Group
               </th>
 
               <th scope="col" className="px-6 py-3">
@@ -81,12 +87,20 @@ const Users = () => {
                 <td className="px-6 py-4">
                   {r.role}
                 </td>
-                <td>
+                <td className="px-6 py-4">
+                  {r.group}
+                </td>
+                <td className='flex flex-row items-center gap-2'>
 
-                  <button
+                  {/* <button
                   onClick={()=>edit(r.id)}
-                  >E</button>
-                  <button>D</button>
+                  >E</button> */}
+
+                  <ButtonEdit
+                  onClick={()=>edit(r.id)}
+                  />
+                  <ButtonHapus />
+                  {/* <button>D</button> */}
                 </td>
               </tr>
 
