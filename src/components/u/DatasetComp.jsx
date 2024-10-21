@@ -5,6 +5,7 @@ import { entitas, entitasData } from "../../data/airis";
 import InfoStore from "./comp/InfoStore";
 import ListPerubahan from "./comp/ListPerubahan";
 import DropdownMenu from "./comp/DropdownMenu";
+import GithubCompiler from "./GithubCompiler";
 // import dataset from "/dataset.json"
 
 

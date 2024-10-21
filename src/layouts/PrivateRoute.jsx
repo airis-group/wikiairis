@@ -10,9 +10,9 @@ const PrivateRoute = ({children}) => {
       await apiCred
         .get(`/auth/me`)
         .then((response) => {
-            console.log("res", response)
-            //   localStorage.removeItem("data");
-            //   localStorage.setItem("data", JSON.stringify(response.data.data));
+            // console.log("resprivae", response)
+            localStorage.removeItem("data");
+            localStorage.setItem("data", JSON.stringify(response.data.data));
             setAnimate(false);
        
         })

@@ -62,3 +62,15 @@ export const ButtonKanan = ({onClick}) => {
     </button>
   )
 }
+
+
+export const LoadingCard = () => {
+  return (
+    <div className='relative flex flex-row items-center justify-between'>
+      <div className='absolute ml-6 mt-6 h-12'>
+        <div className='loader'></div>
+      </div>
+        {/* <span>Prepairing data</span> */}
+    </div>
+  )
+}

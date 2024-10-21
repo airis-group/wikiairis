@@ -7,9 +7,26 @@ import Swal from 'sweetalert2'
 import EntitasSpan from '../comp/EntitasSpan'
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import PernyataanValidator from './PernyataanValidator'
+import GithubCompiler from '../GithubCompiler'
+import axios from 'axios'
+import { LoadingCard } from '../../ButtonAction'
 
 const SurahDetail = ({ assign, dtp, kembali }) => {
-    // let id = 96
+    // let id = '098' => ada perubahan jika  <= contoh dtp = 98 maka return 098
+
+    const [animate, setAnimate] = useState(false)
+
+    let id = dtp; 
+
+    if (typeof id === 'string') {
+      id = parseInt(id, 10); 
+    }
+    
+    if (id <= 99) {
+      id = id.toString().padStart(3, '0');
+    }
+    
+
     const [surah, setSurah] = useState([])
     const [ayah, setAyah] = useState([])
     const handleFetchData = async () => {
@@ -36,22 +53,40 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
         return n?.text
     }
 
+
+
     
 
     const [datas, setDatas] = useState([])
     const [rld, setRld] = useState(false)
     useEffect(() => {
-        const nf = Object.values(surahArray[dtp]);
-        setDatas(nf)
-        handleFetchData()
+        const fetchData = async () => {
+            try {
+                // Await the axios request to resolve
+                setAnimate(true)
+                const response = await axios.get(`https://raw.githubusercontent.com/RiaGusmita/E-IndQNER/refs/heads/main/al-quran-dataset-formatted/chapter_${id}.json`);
+                
+                const nf = Object.values(response.data[id]);
+                setDatas(nf);
+                handleFetchData();
+                setAnimate(false)
+            } catch (err) {
+                console.error("Error fetching data:", err);
+                setAnimate(false)
+            }
+        };
+        
+        // Call the fetchData function inside useEffect
+        fetchData();
     }, [dtp])
 
-
+    
+    // console.log("datas disinis", datas)
     const [surahLabel, setSurahLabel] = useState([]) 
 
 
     const getSurahLabel = async () => {
-        await apiCred.get(`/airis/surah/label?surid=${dtp}`)
+        await apiCred.get(`/airis/surah/label?surid=${id}`)
         .then((res) => {
             setSurahLabel(res.data.data)
 
@@ -65,6 +100,8 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
         getSurahLabel()
 
     },[rld])
+
+    // console.log("surah_label", surahLabel)
 
     const [logSurah, setLogSurah] = useState('')
 
@@ -252,29 +289,33 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
             <h2 className='text-2xl font-bold text-white mb-2'>Detail Surah Number {dtp} </h2>
             <h2 className='arabic-font text-4xl font-bold text-white mb-2'>{surah?.name}</h2>
             <h2 className='text-2xl font-bold text-white mb-2'>{surah?.name_latin}</h2>
-
+        <GithubCompiler />
         </div>
         <button onClick={kembali}
             className='bg-red-500 px-4 py-1 rounded-md w-fit text-xs text-white flex items-center justify-between gap-3'
             >
                 <HiChevronDoubleLeft />
 
-                Back to Assessment List</button>
+                Back to Assessment List
+            </button>
             <div className='grid grid-cols-1 md:grid-cols-12 gap-4'>
                 <div className="md:col-span-10">
-                    
+
                 <div className='flex flex-col gap-3 max-h-[70vh] overflow-x-auto no-scrollbar mt-4'>
+                    {animate ? 
+                        <LoadingCard />
+                    : null}
                     {datas && datas.map((r, i) => (
                         <div key={i} className='flex flex-col odd:bg-slate-100 odd:rounded-lg p-4 gap-2'>
                             <div>
-                                <span className=' bg-cyan-500 p-2 rounded-md  text-white text-xs'>Ayah Number {r.verseid}</span>
+                                <span className=' bg-cyan-500 p-2 rounded-md  text-white text-xs'>Ayah Number {r.verse_id}</span>
 
                             </div>
                             <div>
                                 <span className='font-bold text-slate-600 text-xs'>1. Text Quran</span>
                                 <div className='w-full flex items-center justify-end'>
                                     <p className='arabic-font text-2xl'>
-                                        {filterQuranArabic(r.verseid)}
+                                        {filterQuranArabic(r.verse_id)}
 
                                     </p>
                                 </div>
@@ -285,15 +326,15 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
 
                                 {r.verse}
                             </div> */}
-                            <div>
+                            <div className='flex-wrap'>
                                 <span className='font-bold text-slate-600 text-xs'>2. Verse Translation
                                 </span>
-                                <ul className='flex items-center gap-2 bg-emerald-50 p-2 text-sm'>
-                                    {r.results.split(/[\s.]+/).map((result, index) => {
+                                <ul className='flex items-center gap-2 bg-emerald-50 p-2 text-sm flex-wrap'>
+                                    {r.labels.id.split(/[\s.]+/).map((result, index) => {
                                         const trimmedResult = result.trim();
                                         if (trimmedResult) {
                                             const afterW = trimmedResult.split('/').slice(-1)[0];
-                                            const isAfterO = afterW === 'O' || afterW === 'O)' ? true : false; 
+                                            const isAfterO = afterW === 'O' || afterW === 'O)' || afterW ==='O,/O' ? true : false; 
                                             const parts = trimmedResult.split('/');
                                             const sebelumWord = parts.length > 1 ? parts[0] : null;
                                             const sesudahWord = parts.length > 1 ? parts[1] : null;
@@ -303,9 +344,9 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
                                             return (
                                                 <li key={index} className={` ${isAfterO ? '' : 'bg-red-400 text-white rounded-md px-2 py-1 font-bold text-xs'}`}>
                                                     {/* <span onClick={()=>pilihWord(sebelumWord)}> */}
-                                                    <span onClick={()=>pilihWord(trimmedResult, r.chapterid, r.verseid )}>
+                                                    <span onClick={()=>pilihWord(trimmedResult, r.chapterid, r.verse_id )}>
                                                     {/* {trimmedResult} */}
-                                                    <div onMouseUpCapture={()=>handleSelection(r.chapterid, r.verseid)} 
+                                                    <div onMouseUpCapture={()=>handleSelection(r.chapterid, r.verse_id)} 
                                                         //   style={{  border: '1px solid #ccc', userSelect: 'text' }}
 
                                                     >
@@ -325,13 +366,13 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
                             </div>
                             <div className='flex flex-col'>
                                 <span className='font-bold text-slate-600 text-xs'>3. Proposed Entity Label</span>
-                                    {usulanLabel(r.verseid)}
+                                    {usulanLabel(r.verse_id)}
                             </div>
                             <div>
 
 
                             <span className='font-bold text-slate-600 text-xs'>4. Proposed Entity Span & Label</span>
-                                    {usulanSpan(r.verseid)}
+                                    {usulanSpan(r.verse_id)}
                             </div>
                         </div>
 

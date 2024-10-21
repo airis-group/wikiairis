@@ -8,6 +8,7 @@ import { FaAnchorLock } from "react-icons/fa6";
 const Validator = () => {
     const [dtp, setDtp] = useState('')
     const userDetail = JSON.parse(localStorage.getItem('data'))
+    console.log("userDetail", userDetail)
 
     const [datas, setDatas] = useState([])
     const [assign, setAssign] = useState('')
@@ -34,7 +35,7 @@ const Validator = () => {
         getDatas()
     }, [])
 
-    console.log("assig", assign)
+    console.log("assig", userDetail?.group)
 
     return (
         <>
