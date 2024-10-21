@@ -69,7 +69,8 @@ const TopNavMenu = () => {
             href="#"
             className="block px-4 py-2 text-gray-800 hover:bg-gray-200 transition duration-200"
           >
-            Submenu Option 3
+            Account 
+            <span className="text-[10px] font-extralight text-white bg-purple-500 px-4 py-1 rounded-2xl">Beta</span>
           </a>
         </div>
       )}
