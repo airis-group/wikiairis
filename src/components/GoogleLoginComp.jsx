@@ -90,8 +90,8 @@ const GoogleLoginComp = ({err, setErr}) => {
     //     });
     // }
 
-    console.log("user", user)
-    console.log("profile", profile)
+    // console.log("user", user)
+    // console.log("profile", profile)
   return (
     <div>
         <GoogleOAuthProvider clientId='336834040279-b4m8ei3a7ef1sk7uklka9e27jpaor9j8.apps.googleusercontent.com'>
