@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const projects = [
+  {
+    name: "IndQNER V.2",
+    img: "/assets/images/indqner.jpeg",
+    path : "https://indqner.airis-group.net/indqner-v2.0",
+    is_aktif : true
+  },
+  {
+    name: "ALIF",
+    img: "/assets/images/dataset.png",
+    path : "https://alif.airis-group.net",
+    is_aktif : false
+  },
+];
+---
+
+<Layout title="About Us AiRis.id">
+  <div
+    class="flex flex-col gap-4 pb-[70px]"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <h1 class="text-3xl sm:text-6xl font-bold text-emerald-700 text-center">
+        Our Funded Projects
+      </h1>
+      <!-- <p class="text-sm text-slate-400 text-center max-w-xl mt-4">
+        Our research team is composed of highly qualified and dedicated
+        lecturers from UIN Syarif Hidayatullah Jakarta, each bringing a unique
+        blend of expertise in Islamic studies and artificial intelligence.
+      </p> -->
+    </div>
+    <div class="w-full px-8">
+      <div class="grid gap-10 mx-auto md:grid-cols-2 lg:max-w-screen-lg">
+        {
+          projects.map((r) => (
+            <div class="flex flex-col items-center rounded-lg justify-center shadow-xl p-8">
+              <img
+                class="object-cover rounded-md "
+                src={r.img}
+                alt="Person"
+              />
+              <div class="flex flex-col justify-center mt-8">
+                <p class="text-2xl text-emerald-700 font-bold text-center">
+                  {r.name}
+                </p>
+                {r?.is_aktif ?  
+                  <a 
+                  target="_blank"
+                  href={r.path}
+                  rel="noopener noreferrer"
+                  class="mt-4 bg-red-500 hover:bg-purple-600 rounded-lg font-bold cursor-pointer text-white text-sm text-center px-4 py-2 duration-300">Learn More</a>
+                
+                : null}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+  </div>
+</Layout>

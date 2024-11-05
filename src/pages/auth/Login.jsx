@@ -10,6 +10,7 @@ const Login = () => {
     const handleChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value })
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setErr('')
@@ -18,20 +19,26 @@ const Login = () => {
             .then((response) => {
 
                 // console.log("eres", response)
+                let status = response.data.status 
+                if (status === 404) {
+                    throw new Error("Invalid Credential"); // Throw an error
+                }
                 localStorage.setItem("access_token", response.data.access_token);
                 localStorage.setItem("lang", "ind");
                 localStorage.setItem("data", JSON.stringify(response.data.data));
                 window.location.href = "/u/dashboard";
                 setTimeout(() => setAnimate(false), 700);
+
                 setErr("");
             })
             .catch((error) => {
                 setAnimate(false);
                 setInput("");
-                console.log("err", error)
-                setErr(error.response.data.detail);
+                // console.log("err", error)
+                setErr(error.message);
             });
     }
+
     return (
         <div className="flex items-center min-h-screen bg-gray-900">
             <div className="container mx-auto">
@@ -47,7 +54,7 @@ const Login = () => {
                             </div>
                             : null}
 
-                        <GoogleOAuthProvider clientId="336834040279-b4m8ei3a7ef1sk7uklka9e27jpaor9j8.apps.googleusercontent.com">
+                        <GoogleOAuthProvider client="load" clientId="336834040279-b4m8ei3a7ef1sk7uklka9e27jpaor9j8.apps.googleusercontent.com">
                             <GoogleLoginComp err={err} setErr={setErr} />
 
                         </GoogleOAuthProvider>

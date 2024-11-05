@@ -1,0 +1,58 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const publications = [
+  {
+    title: "IndQNER: Named Entity Recognition Benchmark Dataset from the Indonesian Translation of the Quran",
+    link : "https://www.researchgate.net/publication/371555222_IndQNER_Named_Entity_Recognition_Benchmark_Dataset_from_the_Indonesian_Translation_of_the_Quran",
+    author: "R. Gusmita, A. Firmansyah, D. Mousallem, and A. Ngomo.",
+    desc: "Proceedings of 28th International Conference on Applications of Natural Language to Information Systems, NLDB, (2023)",
+    doi: "DOI: 10.1007/978-3-031-35320-8_12",
+    path_doi : "https://doi.org/10.1007/978-3-031-35320-8_12",
+  },
+
+];
+---
+
+<Layout title="About Us AiRis.id">
+  <div
+    class="flex flex-col gap-4 pb-[70px]"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <h1 class="text-3xl sm:text-6xl font-bold text-purple-700 text-center">
+        Our Publications
+      </h1>
+      <!-- <p class="text-sm text-slate-400 text-center max-w-xl mt-4">
+        Our research team is composed of highly qualified and dedicated
+        lecturers from UIN Syarif Hidayatullah Jakarta, each bringing a unique
+        blend of expertise in Islamic studies and artificial intelligence.
+      </p> -->
+    </div>
+    <div class="w-full px-8">
+      <div class="grid gap-10 mx-auto lg:max-w-screen-lg">
+        {
+          publications.map((r) => (
+            <div class="w-full flex flex-col items-center rounded-lg justify-start border-b">
+        
+              <div class="flex flex-col items-start justify-start mt-8  w-full">
+                <a href={r.link} target="_blank" class="group">
+                <h1 class="text-2xl md:text-4xl  text-slate-700 group-hover:text-emerald-600 duration-300 mb-2">{r.title}</h1>
+
+                </a>
+                <p class="text-slate-500 font-bold italic text-lg">Author</p>
+                <p class="text-slate-500 italic text-md mb-1">{r.author}</p>
+                <p class="text-slate-500 font-bold italic text-lg">Description</p>
+                <p class="text-slate-600 text-md mb-2">{r.desc}</p>
+                <a 
+                target="_blank"
+                rel="noopener noreferrer"
+                href={r.path_doi} class="text-slate-500 hover:text-purple-700 font-bold">DOI  : {r.doi}</a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+  </div>
+</Layout>

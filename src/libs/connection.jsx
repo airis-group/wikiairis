@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // let PY_API = 'http://localhost:5001/api/v1'
-let PY_API = 'https://crmapi.paraduta.id/api/v1'
+// let PY_API = import.meta.env.VITE_PY_API
+let PY_API = 'https://api.airis-group.net/api/v1'
 const baseUrl = PY_API
 
 export const api = axios.create({
