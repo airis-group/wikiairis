@@ -36,6 +36,9 @@ const DropdownMenu = ({ entitas, nlab, wtp, handleSubmit, handleChangeLabel }) =
                 : null}
             </div>
             <div className='h-[75vh] overflow-x-auto no-scrollbar flex flex-col'>
+                <button onClick={()=>handleChangeLabel('0', 1)}
+                    className='bg-red-400 text-sm text-white mb-2 px-2 py-1 shadow-lg rounded-xl'
+                    >Clear Label</button>
                 <EntitasLabel handleChangeLabel={handleChangeLabel} />
                 {entitas.map((r, i) => (
                     <div key={i} className="mb-2 mt-4">
@@ -115,7 +118,7 @@ const DropdownMenu = ({ entitas, nlab, wtp, handleSubmit, handleChangeLabel }) =
                                                                         {/* {itsub3?.nameSub3} */}
                                                                         <span>{bhs === 'ind' ? itsub3?.lang.ind : itsub3?.lang.en}</span>
 
-                                                                        {itsub3?.isLabel ? filterTag(itsub3?.nameSub3) : null}
+                                                                        {itsub3?.isLabel ? filterTag(itsub3?.label) : null}
                                                                     </div>
                                                                 ))}
                                                             </div>

@@ -238,7 +238,7 @@ const DatasetComp = () => {
                 } fixed top-0 left-0 h-full  backdrop-blur-md p-4 shadow-lg`}
             >
                 <div className="flex items-center justify-between">
-                <h2 className="text-xl text-emerald-600 font-bold mb-4">Entitas Modul</h2>
+                <h2 className="text-xl text-emerald-600 font-bold mb-4">Entitas Module</h2>
                 <span 
                 onClick={()=>closeModal()}
                 className="bg-red-500 px-4 py-1 text-xs text-white font-bold cursor-pointer rounded-xl">X</span>

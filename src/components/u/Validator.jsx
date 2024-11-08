@@ -35,7 +35,7 @@ const Validator = () => {
         getDatas()
     }, [])
 
-    console.log("assig", userDetail?.group)
+    console.log("assigasdfas", userDetail?.group)
 
     return (
         <>
@@ -44,7 +44,7 @@ const Validator = () => {
             <>
                 {dtp ? <SurahDetail assign={assign} dtp={dtp} kembali={kembali} /> :
                     <div className='w-full flex flex-col gap-4 mt-8'>
-                        <h2 className='text-4xl font-bold text-emerald-600'>List Assessment</h2>
+                        <h2 className='text-4xl font-bold text-emerald-600'>List of Assigned Chapters                        </h2>
 
                         <div className='w-full flex flex-col gap-2'>
                             {/* <div className='x-full px-4 p-2 bg-slate-100 rounded-md flex items-center justify-between'>

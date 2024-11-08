@@ -140,6 +140,8 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
         // handleSubmit()  
     }
 
+    console.log("seetNelap", nlab)
+
     const handleSubmit = async (e) => {
 
         let newData = {
@@ -214,7 +216,7 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
                 })
               Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "The proposed entity span has been deleted.",
                 icon: "success"
               });
             }
@@ -286,17 +288,17 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
     return (
         <div className='w-full flex flex-col mt-8 mb-8'>
         <div className='bg-purple-400 rounded-lg flex items-center flex-col justify-center py-8 mb-4 mt-4 shadow-lg'>
-            <h2 className='text-2xl font-bold text-white mb-2'>Detail Surah Number {dtp} </h2>
+            <h2 className='text-2xl font-bold text-white mb-2'>Details of Chapter {dtp} </h2>
             <h2 className='arabic-font text-4xl font-bold text-white mb-2'>{surah?.name}</h2>
             <h2 className='text-2xl font-bold text-white mb-2'>{surah?.name_latin}</h2>
-        <GithubCompiler />
+        {/* <GithubCompiler /> */}
         </div>
         <button onClick={kembali}
             className='bg-red-500 px-4 py-1 rounded-md w-fit text-xs text-white flex items-center justify-between gap-3'
             >
                 <HiChevronDoubleLeft />
 
-                Back to Assessment List
+                Back to the list of assigned chapters
             </button>
             <div className='grid grid-cols-1 md:grid-cols-12 gap-4'>
                 <div className="md:col-span-10">
@@ -384,14 +386,14 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
                 <div className="md:col-span-2">
                     <div className='flex flex-col gap-2'>
                     <div className='bg-slate-950 p-3 rounded-lg text-sm flex flex-col'>
-                            <span className='font-bold text-white'>Pernyataan</span>
-                            <span className='text-white text-xs'>Jika Bapak/Ibu Validator secara yakin telah melakukan dan atau memberikan masukan untuk Surah ini, mohon kiranya mengklik tombol pada bagain bahwa ini</span>
+                            <span className='font-bold text-white'>Question ?</span>
+                            <span className='text-white text-xs'>If you have finished the validation task on this chapter, please click the button below. </span>
                             
                             <PernyataanValidator assign={assign} />
                         </div>
                         <div className='bg-red-600 p-3 rounded-lg text-sm max-h-[350px] overflow-x-auto no-scrollbar'>
-                            <span className='font-bold text-white'>Informasi Umum</span>
-                            <ul className='text-xs text-white space-y-3'>
+                            <span className='font-bold text-white'>Guidances</span> <br />
+                            {/* <ul className='text-xs text-white space-y-3'>
                                 <li>
                                     <span className='font-bold'>
                                     1. Modul Perubahan Label Entitas : 
@@ -427,7 +429,23 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
 
 
                                 </li>
-                            </ul>
+                            </ul> */}
+                            <p className='text-xs text-white'>
+
+                            
+1. Each verse can have pre-labeled entities or none. <br />
+2. Pre-labeled  entities are parts of verses written with their respective labels using slash characters. For example, Muhammad in the following text is a pre-labeled entity as it is followed by a slash and its respective label, i.e. /Messenger:
+Katakanlah ( Nabi Muhammad/Messenger ), "Aku berlindung kepada Tuhan manusia, <br /><br />
+
+<span className='text-md font-bold text-white'>A validator is tasked to do the following processes:</span> <br /><br />
+1. Check if a pre-labeled entity in a verse is a valid entity. A valid entity is a name (proper noun) of an actual individual object. If it is not a valid one, the validator should remove it from the verse by single-clicking the entity, and clicking the button “Remove the Label” that is located in the right side of the display. 
+<br /><br />2. Check if a valid pre-labeled entity has a correct label. If the label is incorrect, the validator  should change it with the correct one from the existing labels or the new proposed label.
+<br /><br />3. Check if a valid pre-labeled entity has a correct span. If it is not the case, the validator should change the span by clicking and dragging the correct one, and then choose the proper label from the existing labels or the new proposed label.
+<br /><br />4. Check if a valid pre-labeled entity has a correct writing. If it is not the case, modify the entity. For example, Mahabijaksana and Mahaperkasa in “Jika Engkau mengampuni mereka, sesungguhnya Engkaulah Allah Mahaperkasa lagi Mahabijaksana.” are written incorrectly. Therefore, they should be modified into Maha Bijaksana and Maha Perkasa, respectively.
+<br /><br />5. Create a new entity’s label if the desired label is not in the existing labels. This is done by single-clicking the entity, and then clicking the “Add New Label” button on the right side of the display. 
+<br /><br />6. Define a new valid entity if it is not pre-labeled. This is done by single/double-clicking the entity, and then choose the right label (from the existing ones/new created label)
+If the verification process has been done, the evaluator should click the button “I have done the verification” that is located on the right side of the display.
+                            </p>
                         </div>
                   
                     </div>
@@ -442,9 +460,9 @@ const SurahDetail = ({ assign, dtp, kembali }) => {
             >
                 <div className="flex items-center justify-between">
                 <h2 className="text-xl text-emerald-600 font-bold mb-4">Entitas Label Modul</h2>
-                <span 
+                <button 
                 onClick={()=>closeModal()}
-                className="bg-red-500 px-4 py-1 text-xs text-white font-bold cursor-pointer rounded-xl">X</span>
+                className="bg-red-500 px-4 py-1 text-xs text-white font-bold cursor-pointer rounded-xl">X</button>
 
                 </div>
                 <div className="max-h-[90vh]">

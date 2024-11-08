@@ -66,6 +66,7 @@ const EntitasLabel = ({handleChangeLabel}) => {
             :
             <button onClick={()=>addForm()} className='bg-emerald-400 px-2 py-1 rounded-md'>Add New Label</button>
              }
+
         </div>
         {openadd ? 
         <div>

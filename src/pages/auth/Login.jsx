@@ -18,7 +18,7 @@ const Login = () => {
         await api.post(`/auth/login`, input)
             .then((response) => {
 
-                // console.log("eres", response)
+                console.log("eres", response)
                 let status = response.data.status 
                 if (status === 404) {
                     throw new Error("Invalid Credential"); // Throw an error
@@ -34,7 +34,7 @@ const Login = () => {
             .catch((error) => {
                 setAnimate(false);
                 setInput("");
-                // console.log("err", error)
+                console.log("err", error)
                 setErr(error.message);
             });
     }
